@@ -1,5 +1,5 @@
 // Central place for everything that is still open or used on several pages.
-// Values starting with TODO are placeholders until Tim decides.
+// Values starting with TODO are placeholders; links starting with TODO are hidden.
 export const site = {
   // true while the site is still in development: every page gets noindex
   preview: true,
@@ -11,6 +11,6 @@ export const site = {
   links: {
     github: 'https://github.com/PockyDev',
     linkedin: 'https://www.linkedin.com/in/tim-pockczerwinski-5a5313250/',
-    xing: 'TODO',
+    xing: 'https://www.xing.com/profile/Tim_Pockczerwinski',
   },
 };
