@@ -1,0 +1,30 @@
+---
+import Base from '../../../../layouts/Base.astro';
+import RightsSection from '../../../../components/RightsSection.astro';
+---
+<Base title="Datenschutz Phonea" description="Datenschutzerklärung der App Phonea – Buchstabiertafel">
+  <section class="container prose page">
+    <h1>Datenschutzerklärung Phonea</h1>
+    <p class="note">Entwurf, Stand Oktober 2026 (App-Version 1.4) – vor dem Livegang prüfen.</p>
+
+    <h2>Kurz gesagt</h2>
+    <p>Phonea braucht kein Konto und zeigt keine Werbung. Was du eintippst und als Favorit speicherst, bleibt auf deinem Gerät. Nutzungsstatistiken und Absturzberichte gibt es nur, wenn du beim ersten Start zustimmst.</p>
+
+    <RightsSection>
+      <h2>Daten auf deinem Gerät</h2>
+      <p>Eingaben, Favoriten und Einstellungen (z. B. gewählte Buchstabiertafel) speichert Phonea nur lokal auf deinem Gerät. Sie werden nicht an mich übertragen. Wenn du die App löschst, sind sie weg.</p>
+
+      <h2>Google Firebase Analytics und Crashlytics (nur mit Einwilligung)</h2>
+      <p>Beim ersten Start fragt Phonea, ob du anonyme Nutzungsstatistiken und Absturzberichte erlauben möchtest. Ohne Zustimmung ist beides ausgeschaltet. Mit Zustimmung nutzt die App Firebase Analytics und Firebase Crashlytics der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Dabei werden z. B. eine zufällige App-Instanz-ID, Gerätemodell, Android-Version, App-Version, Spracheinstellung, ungefähre Region und Informationen zu Bildschirmaufrufen bzw. Abstürzen verarbeitet. Was du eintippst, wird nicht übertragen.</p>
+      <p>Rechtsgrundlage ist deine Einwilligung (Art. 6 Abs. 1 lit. a DSGVO). Du kannst sie jederzeit in den Einstellungen der App widerrufen. Eine Übermittlung in die USA ist möglich; Google ist unter dem EU-US Data Privacy Framework zertifiziert. Mehr: <a href="https://firebase.google.com/support/privacy">Datenschutz bei Firebase</a>.</p>
+
+      <h2>Bewertungsdialog von Google Play</h2>
+      <p>Phonea kann dich über die In-App-Review-Funktion von Google Play um eine Bewertung bitten. Die Bewertung läuft direkt über Google Play; ich erhalte keine personenbezogenen Daten daraus.</p>
+
+      <h2>Download über Google Play</h2>
+      <p>Beim Download und bei Updates verarbeitet Google Play Daten nach eigenen Regeln. Darauf habe ich keinen Einfluss.</p>
+    </RightsSection>
+  </section>
+</Base>
+
+<style>.page { padding-top: 56px; }</style>

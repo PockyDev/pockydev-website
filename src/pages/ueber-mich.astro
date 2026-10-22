@@ -1,0 +1,31 @@
+---
+import { url } from '../data/url';
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+const profiles = [
+  { label: 'GitHub', href: site.links.github },
+  { label: 'LinkedIn', href: site.links.linkedin },
+  { label: 'XING', href: site.links.xing },
+].filter((p) => !p.href.startsWith('TODO'));
+---
+<Base title="Über mich" description="Hinter PockyDev steckt Tim, Softwareentwickler aus Norddeutschland, der in seiner Freizeit praktische Android-Apps baut.">
+  <section class="container prose about">
+    <img src={url("/images/corgi-logo.png")} alt="" width="120" height="120" />
+    <h1>Hi, ich bin Tim</h1>
+    <p>Hinter PockyDev stecke ich: Softwareentwickler aus Norddeutschland. In meiner Freizeit baue ich kleine Android-Apps, die genau eine Sache richtig gut machen sollen.</p>
+    <p>Angefangen hat es 2020 mit dem Kfz Kennzeichen Finder. Später kam Phonea dazu, damit am Telefon niemand mehr „Wie war das? M wie …?“ fragen muss.</p>
+    <p>Mir ist wichtig, dass die Apps schnell sind, offline funktionieren und sparsam mit Daten umgehen. Und ja: Der Corgi ist kein Zufall.</p>
+    <h2>Profile</h2>
+    <ul class="profiles">
+      {profiles.map((p) => <li><a class="btn secondary" href={p.href} rel="me">{p.label}</a></li>)}
+    </ul>
+    <h2>Kontakt</h2>
+    <p>Feedback, Fehler in den Daten oder Ideen? Schreib mir an <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+  </section>
+</Base>
+
+<style>
+  .about { padding-top: 56px; }
+  .about img { border-radius: 50%; margin-bottom: 20px; }
+  .profiles { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+</style>

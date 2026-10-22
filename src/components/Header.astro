@@ -1,0 +1,35 @@
+---
+import { url } from '../data/url';
+const path = Astro.url.pathname;
+const nav = [
+  { href: url('/#apps'), label: 'Apps' },
+  { href: url('/ueber-mich/'), label: 'Über mich' },
+];
+---
+<header class="site-header">
+  <div class="container bar">
+    <a class="brand" href={url("/")}>
+      <img src={url("/images/corgi-logo.png")} alt="" width="40" height="40" />
+      <span>PockyDev</span>
+    </a>
+    <nav aria-label="Hauptnavigation">
+      {nav.map((item) => (
+        <a href={item.href} aria-current={path === item.href ? 'page' : undefined}>{item.label}</a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky; top: 0; z-index: 5;
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .bar { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .brand { display: flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; font-weight: 800; font-size: 1.2rem; }
+  nav { display: flex; gap: 20px; }
+  nav a { color: var(--text); text-decoration: none; font-weight: 500; }
+  nav a:hover, nav a[aria-current='page'] { color: var(--accent); }
+</style>

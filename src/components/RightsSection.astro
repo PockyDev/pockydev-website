@@ -1,0 +1,10 @@
+---
+import { site } from '../data/site';
+---
+<h2>Verantwortlicher</h2>
+<p>{site.owner}, {site.address.join(', ')}, E-Mail: <a href={`mailto:${site.email}`}>{site.email}</a></p>
+<slot />
+<h2>Deine Rechte</h2>
+<p>Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch (Art. 15–21 DSGVO). Eine Einwilligung kannst du jederzeit mit Wirkung für die Zukunft widerrufen. Außerdem kannst du dich bei einer Datenschutz-Aufsichtsbehörde beschweren, zum Beispiel beim Unabhängigen Landeszentrum für Datenschutz Schleswig-Holstein.</p>
+<h2>Kinder</h2>
+<p>Die App richtet sich nicht gezielt an Kinder unter 13 Jahren.</p>
