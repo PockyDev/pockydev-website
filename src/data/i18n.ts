@@ -3,15 +3,16 @@ import { url } from './url';
 export type Lang = 'de' | 'en';
 
 // Every page has a key; the same key maps to the German and the English path.
+// Paths are English in both languages; English pages only add the /en prefix.
 export const routes = {
   home: { de: '/', en: '/en/' },
-  about: { de: '/ueber-mich/', en: '/en/about/' },
-  imprint: { de: '/impressum/', en: '/en/imprint/' },
-  privacy: { de: '/datenschutz/', en: '/en/privacy/' },
+  about: { de: '/about-me/', en: '/en/about-me/' },
+  imprint: { de: '/imprint/', en: '/en/imprint/' },
+  privacy: { de: '/privacy/', en: '/en/privacy/' },
   'app:kfz-kennzeichen-finder': { de: '/apps/kfz-kennzeichen-finder/', en: '/en/apps/kfz-kennzeichen-finder/' },
   'app:phonea': { de: '/apps/phonea/', en: '/en/apps/phonea/' },
-  'privacy:kfz-kennzeichen-finder': { de: '/apps/kfz-kennzeichen-finder/datenschutz/', en: '/en/apps/kfz-kennzeichen-finder/privacy/' },
-  'privacy:phonea': { de: '/apps/phonea/datenschutz/', en: '/en/apps/phonea/privacy/' },
+  'privacy:kfz-kennzeichen-finder': { de: '/apps/kfz-kennzeichen-finder/privacy/', en: '/en/apps/kfz-kennzeichen-finder/privacy/' },
+  'privacy:phonea': { de: '/apps/phonea/privacy/', en: '/en/apps/phonea/privacy/' },
 } as const;
 
 export type RouteKey = keyof typeof routes;
