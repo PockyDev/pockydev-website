@@ -7,7 +7,7 @@ export const site = {
   claim: 'Praktische Android-Apps ohne Schnickschnack: einfach, schnell und mit Liebe zum Detail. Made in Germany von PockyDev.',
   owner: 'Tim TODO-Nachname',
   address: ['TODO Straße Nr.', 'TODO PLZ Ort'],
-  email: 'TODO@pockydev.de',
+  email: 'pocky_dev@web.de',
   links: {
     github: 'https://github.com/PockyDev',
     linkedin: 'TODO',
