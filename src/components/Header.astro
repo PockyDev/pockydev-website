@@ -1,14 +1,15 @@
 ---
+import { url } from '../data/url';
 const path = Astro.url.pathname;
 const nav = [
-  { href: '/#apps', label: 'Apps' },
-  { href: '/ueber-mich/', label: 'Über mich' },
+  { href: url('/#apps'), label: 'Apps' },
+  { href: url('/ueber-mich/'), label: 'Über mich' },
 ];
 ---
 <header class="site-header">
   <div class="container bar">
-    <a class="brand" href="/">
-      <img src="/images/corgi-logo.png" alt="" width="40" height="40" />
+    <a class="brand" href={url("/")}>
+      <img src={url("/images/corgi-logo.png")} alt="" width="40" height="40" />
       <span>PockyDev</span>
     </a>
     <nav aria-label="Hauptnavigation">

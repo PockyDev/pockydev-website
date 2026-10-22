@@ -1,12 +1,13 @@
 ---
+import { url } from '../data/url';
 import Base from '../layouts/Base.astro';
 ---
 <Base title="Seite nicht gefunden" noindex>
   <section class="container prose page">
-    <img src="/images/corgi-logo.png" alt="" width="120" height="120" />
+    <img src={url("/images/corgi-logo.png")} alt="" width="120" height="120" />
     <h1>Hier ist nichts</h1>
     <p>Der Corgi hat überall gesucht, aber diese Seite gibt es nicht.</p>
-    <p><a class="btn" href="/">Zur Startseite</a></p>
+    <p><a class="btn" href={url("/")}>Zur Startseite</a></p>
   </section>
 </Base>
 

@@ -1,4 +1,5 @@
 ---
+import { url } from '../data/url';
 import { type App, playStoreUrl } from '../data/apps';
 interface Props { app: App }
 const { app } = Astro.props;
@@ -7,7 +8,7 @@ const { app } = Astro.props;
   <div class="head">
     <img src={app.icon} alt="" width="72" height="72" loading="lazy" />
     <div>
-      <h3><a href={`/apps/${app.slug}/`}>{app.name}</a></h3>
+      <h3><a href={url(`/apps/${app.slug}/`)}>{app.name}</a></h3>
       <p class="tagline">{app.tagline}</p>
     </div>
   </div>
@@ -15,7 +16,7 @@ const { app } = Astro.props;
   <ul class="chips">{app.facts.map((f) => <li>{f}</li>)}</ul>
   <div class="actions">
     <a class="btn" href={playStoreUrl(app)}>Bei Google Play</a>
-    <a class="btn secondary" href={`/apps/${app.slug}/`}>Mehr erfahren</a>
+    <a class="btn secondary" href={url(`/apps/${app.slug}/`)}>Mehr erfahren</a>
   </div>
 </article>
 

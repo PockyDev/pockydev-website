@@ -1,4 +1,6 @@
 ---
+import { url } from '../data/url';
+import { site } from '../data/site';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -12,7 +14,7 @@ interface Props {
 const { title, description = 'Praktische Android-Apps ohne Schnickschnack: Kfz Kennzeichen Finder und Phonea – Buchstabiertafel.', noindex = false } = Astro.props;
 const fullTitle = title === 'PockyDev' ? 'PockyDev – Android-Apps aus Norddeutschland' : `${title} | PockyDev`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
-const ogImage = new URL('/images/og-image.jpg', Astro.site);
+const ogImage = new URL(url('/images/og-image.jpg'), Astro.site);
 ---
 <!doctype html>
 <html lang="de">
@@ -22,9 +24,9 @@ const ogImage = new URL('/images/og-image.jpg', Astro.site);
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    {noindex && <meta name="robots" content="noindex" />}
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    {(noindex || site.preview) && <meta name="robots" content="noindex" />}
+    <link rel="icon" type="image/png" href={url("/favicon.png")} />
+    <link rel="apple-touch-icon" href={url("/apple-touch-icon.png")} />
     <meta name="theme-color" content="#1e1b4b" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="PockyDev" />

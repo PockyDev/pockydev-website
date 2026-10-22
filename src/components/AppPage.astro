@@ -1,4 +1,5 @@
 ---
+import { url } from '../data/url';
 import Base from '../layouts/Base.astro';
 import { type App, playStoreUrl } from '../data/apps';
 interface Props { app: App; description: string; category: string }
@@ -36,7 +37,7 @@ const jsonLd = {
     <div class="prose">
     <slot />
     <h2>Datenschutz</h2>
-    <p>Wie {app.name} mit Daten umgeht, steht in der <a href={`/apps/${app.slug}/datenschutz/`}>Datenschutzerklärung der App</a>.</p>
+    <p>Wie {app.name} mit Daten umgeht, steht in der <a href={url(`/apps/${app.slug}/datenschutz/`)}>Datenschutzerklärung der App</a>.</p>
     </div>
   </section>
 </Base>
