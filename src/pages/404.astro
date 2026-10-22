@@ -7,8 +7,9 @@ import Base from '../layouts/Base.astro';
     <img src={url("/images/corgi-logo.png")} alt="" width="120" height="120" />
     <h1>Hier ist nichts</h1>
     <p>Der Corgi hat überall gesucht, aber diese Seite gibt es nicht.</p>
-    <p><a class="btn" href={url("/")}>Zur Startseite</a></p>
+    <p lang="en">The corgi looked everywhere, but this page doesn't exist.</p>
+    <p class="links"><a class="btn" href={url("/")}>Zur Startseite</a> <a class="btn secondary" href={url("/en/")} lang="en">English home page</a></p>
   </section>
 </Base>
 
-<style>.page { padding-top: 72px; text-align: center; } img { margin: 0 auto 20px; border-radius: 50%; }</style>
+<style>.page { padding-top: 72px; text-align: center; } img { margin: 0 auto 20px; border-radius: 50%; } .links { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }</style>

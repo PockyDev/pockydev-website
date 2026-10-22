@@ -1,0 +1,25 @@
+---
+import Base from '../../layouts/Base.astro';
+import { site } from '../../data/site';
+import { route } from '../../data/i18n';
+---
+<Base title="Legal notice" lang="en" routeKey="imprint" noindex>
+  <section class="container prose page">
+    <h1>Legal notice</h1>
+    <p class="note">The German <a href={route('imprint', 'de')} hreflang="de">Impressum</a> is the legally binding version.</p>
+    <h2>Information according to § 5 DDG (German Digital Services Act)</h2>
+    <p>
+      {site.owner}<br />
+      {site.address.map((line) => <>{line}<br /></>)}
+      Germany
+    </p>
+    <h2>Contact</h2>
+    <p>E-mail: <a href={`mailto:${site.email}`}>{site.email}</a></p>
+    <h2>Responsible for content according to § 18 (2) MStV</h2>
+    <p>{site.owner}, address as above</p>
+    <h2>Consumer dispute resolution</h2>
+    <p>I am neither willing nor obliged to take part in dispute resolution proceedings before a consumer arbitration board.</p>
+  </section>
+</Base>
+
+<style>.page { padding-top: 56px; }</style>

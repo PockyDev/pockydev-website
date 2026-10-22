@@ -1,0 +1,43 @@
+---
+import AppPage from '../../../../components/AppPage.astro';
+import { getApp } from '../../../../data/apps';
+const app = getApp('kfz-kennzeichen-finder', 'en');
+---
+<AppPage app={app} lang="en" category="TravelApplication" description="License Plate Finder: where is that car from? More than 900 number plate codes from Germany, Austria and Switzerland – with map, Wikipedia summary and offline search. Free for Android.">
+  <p>Where does the number plate KF come from? What does NWM stand for? And which canton is behind GE? With License Plate Finder you instantly see which city, district or canton a car is registered in – for Germany, Austria and Switzerland in one app.</p>
+  <p>Just type the code and the place appears together with its state, district or canton. Perfect for road trips, holidays or a plate-spotting game with the kids.</p>
+
+  <h2>More than 900 registration codes</h2>
+  <ul>
+    <li><strong>771 codes from Germany</strong>, including reintroduced old codes such as AIB (Bad Aibling) or WAT (Wattenscheid)</li>
+    <li><strong>106 district codes from Austria</strong>, e.g. W (Vienna), G (Graz), KB (Kitzbühel)</li>
+    <li><strong>26 canton codes from Switzerland</strong>, e.g. ZH (Zurich), BE (Bern), GE (Geneva)</li>
+  </ul>
+
+  <h2>A detail page for every code</h2>
+  <ul>
+    <li>Map showing where the place is</li>
+    <li>Short summary from Wikipedia in your language, with a link to the full article</li>
+    <li>Hear the place name read aloud – in the language of the place, so Genève in French and Bellinzona in Italian</li>
+  </ul>
+
+  <h2>Examples</h2>
+  <ul>
+    <li>HH → Hamburg</li>
+    <li>M → Munich</li>
+    <li>KF → Kaufbeuren (Bavaria)</li>
+    <li>NWM → Nordwestmecklenburg (Mecklenburg-Vorpommern)</li>
+    <li>W → Vienna</li>
+    <li>GE → Geneva</li>
+  </ul>
+
+  <h2>Frequently asked questions</h2>
+  <h3>Does the app work offline?</h3>
+  <p>Yes. The search and the list of all codes work without internet. Only the map and the Wikipedia summary on the detail page need a connection.</p>
+  <h3>Are old codes included?</h3>
+  <p>Yes, the reintroduced old German codes are included, for example AIB (Bad Aibling), WOR (Wolfratshausen) or SOG (Schongau).</p>
+  <h3>Where does the data come from?</h3>
+  <p>From the Wikipedia lists of vehicle registration codes for Germany, Austria and Switzerland. The data is checked and updated regularly, most recently in October 2026.</p>
+  <h3>How much does the app cost?</h3>
+  <p>Nothing. The app is free and funded by ads.</p>
+</AppPage>

@@ -1,17 +1,20 @@
 ---
-import { url } from '../data/url';
 import { site } from '../data/site';
+import { type Lang, route, ui } from '../data/i18n';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = ui[lang];
 const year = new Date().getFullYear();
 ---
 <footer class="site-footer">
   <div class="container cols">
     <div>
       <strong>PockyDev</strong>
-      <p>Android-Apps ohne Schnickschnack.<br />Keine Cookies, kein Tracking auf dieser Seite.</p>
+      <p>{t.footerClaim}<br />{t.footerNoTracking}</p>
     </div>
-    <nav aria-label="Rechtliches">
-      <a href={url("/impressum/")}>Impressum</a>
-      <a href={url("/datenschutz/")}>Datenschutz</a>
+    <nav aria-label={t.navLegal}>
+      <a href={route('imprint', lang)}>{t.imprint}</a>
+      <a href={route('privacy', lang)}>{t.privacy}</a>
       <a href={site.links.github} rel="me">GitHub</a>
     </nav>
   </div>

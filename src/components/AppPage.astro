@@ -1,9 +1,10 @@
 ---
-import { url } from '../data/url';
 import Base from '../layouts/Base.astro';
 import { type App, playStoreUrl } from '../data/apps';
-interface Props { app: App; description: string; category: string }
-const { app, description, category } = Astro.props;
+import { type Lang, route, ui } from '../data/i18n';
+interface Props { app: App; lang: Lang; description: string; category: string }
+const { app, lang, description, category } = Astro.props;
+const t = ui[lang];
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
@@ -12,10 +13,11 @@ const jsonLd = {
   applicationCategory: category,
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
   author: { '@type': 'Organization', name: 'PockyDev', url: Astro.site?.toString() },
-  downloadUrl: playStoreUrl(app),
+  inLanguage: lang,
+  downloadUrl: playStoreUrl(app, lang),
 };
 ---
-<Base title={app.name} description={description}>
+<Base title={app.name} lang={lang} routeKey={`app:${app.slug}`} description={description}>
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(jsonLd)} />
   <section class="hero">
     <div class="container intro">
@@ -24,7 +26,7 @@ const jsonLd = {
         <h1>{app.name}</h1>
         <p class="lead">{app.tagline}</p>
         <ul class="chips">{app.facts.map((f) => <li>{f}</li>)}</ul>
-        <p><a class="btn" href={playStoreUrl(app)}>Jetzt bei Google Play laden</a></p>
+        <p><a class="btn" href={playStoreUrl(app, lang)}>{t.getOnPlayLong}</a></p>
       </div>
     </div>
   </section>
@@ -36,8 +38,8 @@ const jsonLd = {
   <section class="container">
     <div class="prose">
     <slot />
-    <h2>Datenschutz</h2>
-    <p>Wie {app.name} mit Daten umgeht, steht in der <a href={url(`/apps/${app.slug}/datenschutz/`)}>Datenschutzerklärung der App</a>.</p>
+    <h2>{t.appPrivacyHeading}</h2>
+    <p>{t.appPrivacyText(app.name)} <a href={route(`privacy:${app.slug}`, lang)}>{t.appPrivacyLink}</a>.</p>
     </div>
   </section>
 </Base>

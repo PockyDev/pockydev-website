@@ -1,0 +1,31 @@
+---
+import { url } from '../../data/url';
+import Base from '../../layouts/Base.astro';
+import { site } from '../../data/site';
+const profiles = [
+  { label: 'GitHub', href: site.links.github },
+  { label: 'LinkedIn', href: site.links.linkedin },
+  { label: 'XING', href: site.links.xing },
+].filter((p) => !p.href.startsWith('TODO'));
+---
+<Base title="About" lang="en" routeKey="about" description="Tim, software developer from Reinfeld near Lübeck: building software professionally since 2014, now in an engineering leadership role, and making Android apps as PockyDev on the side.">
+  <section class="container prose about">
+    <img class="portrait" src={url("/images/tim.webp")} alt={site.owner} width="160" height="160" />
+    <h1>About me</h1>
+    <p>I'm Tim, a software developer from Reinfeld near Lübeck, Germany. PockyDev is where I write code myself.</p>
+    <p>After studying computer science at the Technical University of Applied Sciences Lübeck, I have been building software professionally since 2014, first in Java and from 2018 as an Android developer. Today I work in an engineering leadership role, with teams, planning and plenty of meetings.</p>
+    <p>That's why I enjoy building my own Android apps in the evenings and at weekends, with Kotlin and Jetpack Compose, from the first idea to the release on Google Play. AI tools like Claude Code are a fixed part of my workflow, from planning through code to tests.</p>
+    <h2>Profiles</h2>
+    <ul class="profiles">
+      {profiles.map((p) => <li><a class="btn secondary" href={p.href} rel="me">{p.label}</a></li>)}
+    </ul>
+    <h2>Contact</h2>
+    <p>Feedback, a mistake in the data or an idea? Write to me at <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+  </section>
+</Base>
+
+<style>
+  .about { padding-top: 56px; }
+  .portrait { border-radius: 50%; margin-bottom: 20px; box-shadow: 0 0 0 4px var(--bg), 0 0 0 7px var(--corgi); }
+  .profiles { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+</style>

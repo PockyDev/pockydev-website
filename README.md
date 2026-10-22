@@ -17,8 +17,9 @@ During development the site runs as a GitHub Pages project site at https://pocky
 ## Structure
 
 - `src/data/site.ts` – owner, address, e-mail, profile links (TODO placeholders until decided)
-- `src/data/apps.ts` – app list (name, package, icon, screenshots) used by home page and app pages
-- `src/pages/` – one file per page: home, `apps/<slug>/`, `apps/<slug>/datenschutz/`, `ueber-mich`, `impressum`, `datenschutz`, `404`
+- `src/data/i18n.ts` – languages, the German/English path of every page (`routes`) and shared UI strings
+- `src/data/apps.ts` – app texts per language (name, tagline, facts, screenshots) used by home page and app pages
+- `src/pages/` – German pages at the root (home, `apps/<slug>/`, `apps/<slug>/datenschutz/`, `ueber-mich`, `impressum`, `datenschutz`, `404`), English pages under `src/pages/en/` (`about`, `imprint`, `privacy`, `apps/<slug>/`, `apps/<slug>/privacy/`)
 - `public/app-ads.txt` – AdMob seller record for the Kfz Kennzeichen Finder
 - `.github/workflows/deploy.yml` – builds on push to `main` and deploys to GitHub Pages
 

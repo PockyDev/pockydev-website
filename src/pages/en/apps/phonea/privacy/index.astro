@@ -1,0 +1,30 @@
+---
+import Base from '../../../../../layouts/Base.astro';
+import RightsSection from '../../../../../components/RightsSection.astro';
+---
+<Base title="Privacy policy Phonea" lang="en" routeKey="privacy:phonea" description="Privacy policy of the app Phonea – Phonetic Alphabet">
+  <section class="container prose page">
+    <h1>Privacy policy Phonea</h1>
+    <p class="note">Draft, October 2026 (app version 1.4) – to be reviewed before going live. The German version is legally binding.</p>
+
+    <h2>In short</h2>
+    <p>Phonea needs no account and shows no ads. What you type and save as a favourite stays on your device. Usage statistics and crash reports are only sent if you agree on first launch.</p>
+
+    <RightsSection lang="en">
+      <h2>Data on your device</h2>
+      <p>Phonea stores your input, favourites and settings (e.g. the chosen spelling alphabet) only locally on your device. They are not sent to me. If you uninstall the app, they are gone.</p>
+
+      <h2>Google Firebase Analytics and Crashlytics (only with consent)</h2>
+      <p>On first launch Phonea asks whether you want to allow anonymous usage statistics and crash reports. Without your consent both are switched off. With your consent the app uses Firebase Analytics and Firebase Crashlytics by Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland. This processes, for example, a random app instance ID, device model, Android version, app version, language setting, approximate region and information about screen views or crashes. What you type is not transmitted.</p>
+      <p>The legal basis is your consent (Art. 6 (1) (a) GDPR). You can withdraw it at any time in the app's settings. Data may be transferred to the USA; Google is certified under the EU-US Data Privacy Framework. More: <a href="https://firebase.google.com/support/privacy">Privacy and security in Firebase</a>.</p>
+
+      <h2>Google Play review dialog</h2>
+      <p>Phonea may ask you for a rating using Google Play's in-app review feature. The rating is handled entirely by Google Play; I receive no personal data from it.</p>
+
+      <h2>Download via Google Play</h2>
+      <p>When you download or update the app, Google Play processes data under its own terms. I have no influence on this.</p>
+    </RightsSection>
+  </section>
+</Base>
+
+<style>.page { padding-top: 56px; }</style>

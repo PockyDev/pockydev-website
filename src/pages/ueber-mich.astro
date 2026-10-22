@@ -8,10 +8,10 @@ const profiles = [
   { label: 'XING', href: site.links.xing },
 ].filter((p) => !p.href.startsWith('TODO'));
 ---
-<Base title="Über mich" description="Tim, Softwareentwickler aus Reinfeld bei Lübeck: seit 2014 professionell in der Softwareentwicklung, heute Führungskraft, nebenbei Android-Apps unter dem Namen PockyDev.">
+<Base title="Über mich" routeKey="about" description="Tim, Softwareentwickler aus Reinfeld bei Lübeck: seit 2014 professionell in der Softwareentwicklung, heute Führungskraft, nebenbei Android-Apps unter dem Namen PockyDev.">
   <section class="container prose about">
     <img class="portrait" src={url("/images/tim.webp")} alt={site.owner} width="160" height="160" />
-    <h1>Hi, ich bin Tim</h1>
+    <h1>Über mich</h1>
     <p>Ich bin Tim, Softwareentwickler aus Reinfeld bei Lübeck. PockyDev ist der Ort, an dem ich selbst code.</p>
     <p>Nach meinem Informatik-Studium an der TH Lübeck entwickle ich seit 2014 professionell Software, erst mit Java, ab 2018 als Android-Entwickler. Inzwischen arbeite ich im Job als Führungskraft in der Entwicklung, mit Teams, Planung und vielen Meetings.</p>
     <p>Abends und am Wochenende baue ich dafür umso lieber eigene Android-Apps mit Kotlin und Jetpack Compose, von der Idee bis zum Release im Play Store. KI-Werkzeuge wie Claude Code sind dabei fester Teil meines Workflows, von der Planung über den Code bis zu den Tests.</p>
