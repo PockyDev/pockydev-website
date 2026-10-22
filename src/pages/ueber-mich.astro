@@ -10,7 +10,7 @@ const profiles = [
 ---
 <Base title="Über mich" description="Hinter PockyDev steckt Tim, Softwareentwickler aus Norddeutschland, der in seiner Freizeit praktische Android-Apps baut.">
   <section class="container prose about">
-    <img src={url("/images/corgi-logo.png")} alt="" width="120" height="120" />
+    <img class="portrait" src={url("/images/tim.webp")} alt={site.owner} width="160" height="160" />
     <h1>Hi, ich bin Tim</h1>
     <p>Hinter PockyDev stecke ich: Softwareentwickler aus Norddeutschland. In meiner Freizeit baue ich kleine Android-Apps, die genau eine Sache richtig gut machen sollen.</p>
     <p>Angefangen hat es 2020 mit dem Kfz Kennzeichen Finder. Später kam Phonea dazu, damit am Telefon niemand mehr „Wie war das? M wie …?“ fragen muss.</p>
@@ -26,6 +26,6 @@ const profiles = [
 
 <style>
   .about { padding-top: 56px; }
-  .about img { border-radius: 50%; margin-bottom: 20px; }
+  .portrait { border-radius: 50%; margin-bottom: 20px; box-shadow: 0 0 0 4px var(--bg), 0 0 0 7px var(--corgi); }
   .profiles { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
 </style>
