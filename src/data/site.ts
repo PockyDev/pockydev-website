@@ -10,7 +10,7 @@ export const site = {
   email: 'pocky_dev@web.de',
   links: {
     github: 'https://github.com/PockyDev',
-    linkedin: 'TODO',
+    linkedin: 'https://www.linkedin.com/in/tim-pockczerwinski-5a5313250/',
     xing: 'TODO',
   },
 };
