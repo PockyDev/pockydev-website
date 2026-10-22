@@ -1,15 +1,15 @@
 ---
-import { url } from '../data/url';
 import Base from '../layouts/Base.astro';
 import { site } from '../data/site';
-import { apps } from '../data/apps';
+import { getApps } from '../data/apps';
+import { route } from '../data/i18n';
 ---
-<Base title="Datenschutz" description="Datenschutzerklärung der Webseite pockydev.de">
+<Base title="Datenschutz" routeKey="privacy" description="Datenschutzerklärung der PockyDev-Webseite">
   <section class="container prose page">
     <h1>Datenschutzerklärung</h1>
     <p class="note">Entwurf, Stand Oktober 2026 – vor dem Livegang prüfen.</p>
     <p>Diese Erklärung gilt für diese Webseite. Für die Apps gibt es eigene Erklärungen:</p>
-    <ul>{apps.map((a) => <li><a href={url(`/apps/${a.slug}/datenschutz/`)}>{a.name}</a></li>)}</ul>
+    <ul>{getApps('de').map((a) => <li><a href={route(`privacy:${a.slug}`, 'de')}>{a.name}</a></li>)}</ul>
 
     <h2>Verantwortlicher</h2>
     <p>{site.owner}, {site.address.join(', ')}, E-Mail: <a href={`mailto:${site.email}`}>{site.email}</a></p>

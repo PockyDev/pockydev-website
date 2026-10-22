@@ -1,0 +1,42 @@
+---
+import AppPage from '../../../../components/AppPage.astro';
+import { getApp } from '../../../../data/apps';
+const app = getApp('phonea', 'en');
+---
+<AppPage app={app} lang="en" category="UtilitiesApplication" description="Phonea turns any word into its spelling alphabet sequence – NATO phonetic alphabet, German DIN 5009 and more. Free, no ads, works offline. For Android.">
+  <p>Never misspell on the phone again! Phonea turns any word into its spelling alphabet sequence – with the NATO phonetic alphabet, the German spelling table (DIN 5009) or the French and Italian tables.</p>
+  <p>Sound familiar? “Was that with an M or an N?” With Phonea you just read it out: Mike, India, Lima, Lima, Echo, Romeo.</p>
+
+  <h2>Spelling alphabets in Phonea</h2>
+  <ul>
+    <li><strong>NATO phonetic alphabet</strong> (ICAO) – Alfa, Bravo, Charlie …</li>
+    <li><strong>Germany, DIN 5009:2022</strong> – the current German table with city names (Aachen, Berlin, Chemnitz …)</li>
+    <li><strong>Germany until 2022</strong> – Anton, Berta, Cäsar …</li>
+    <li><strong>Germany until 1934</strong> – Albert, Bernhard, Cäsar …</li>
+    <li><strong>France</strong> – Anatole, Berthe, Célestine …</li>
+    <li><strong>Italy</strong> – Ancona, Bari, Como …</li>
+  </ul>
+  <p>On first launch Phonea picks the alphabet that matches your phone's language. You can switch at any time.</p>
+
+  <h2>What Phonea does</h2>
+  <ul>
+    <li>Spell any word, including German umlauts and ß</li>
+    <li>Show the full spelling alphabet as an overview</li>
+    <li>Save frequently used words as favourites</li>
+    <li>Light or dark mode, as you like</li>
+  </ul>
+
+  <h2>What Phonea doesn't do</h2>
+  <ul>
+    <li>No ads</li>
+    <li>No costs, no subscriptions</li>
+    <li>No internet connection needed</li>
+    <li>No analytics without your consent</li>
+  </ul>
+
+  <h2>Quick answers</h2>
+  <h3>What is the NATO phonetic alphabet?</h3>
+  <p>The NATO phonetic alphabet, also called the ICAO or international radiotelephony spelling alphabet, assigns a clear code word to each letter, from Alfa to Zulu. It is used in aviation, radio and international phone calls so that letters like B and P or M and N are not confused.</p>
+  <h3>Which spelling alphabet should I use?</h3>
+  <p>In English and internationally, use the NATO alphabet. For calls in Germany, the DIN 5009 table with city names has been the standard since 2022; many people still know the older table with first names.</p>
+</AppPage>

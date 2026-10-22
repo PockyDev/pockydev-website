@@ -1,9 +1,9 @@
 ---
 import AppPage from '../../../components/AppPage.astro';
-import { apps } from '../../../data/apps';
-const app = apps.find((a) => a.slug === 'phonea')!;
+import { getApp } from '../../../data/apps';
+const app = getApp('phonea', 'de');
 ---
-<AppPage app={app} category="UtilitiesApplication" description="Phonea ist eine Buchstabiertafel für Android: jedes Wort sicher buchstabieren am Telefon mit DIN 5009, NATO-Alphabet und mehr. Kostenlos, ohne Werbung, offline.">
+<AppPage app={app} lang="de" category="UtilitiesApplication" description="Phonea ist eine Buchstabiertafel für Android: jedes Wort sicher buchstabieren am Telefon mit DIN 5009, NATO-Alphabet und mehr. Kostenlos, ohne Werbung, offline.">
   <p>Phonea ist eine Buchstabiertafel für dein Handy: Du tippst ein Wort ein, und Phonea zeigt dir für jeden Buchstaben das passende Ansagewort. So buchstabierst du Namen, E-Mail-Adressen oder Kundennummern am Telefon sicher und ohne Nachfragen.</p>
   <p>Aus „Meier“ wird zum Beispiel: München, Essen, Ingelheim, Essen, Rostock.</p>
 

@@ -17,15 +17,16 @@ During development the site runs as a GitHub Pages project site at https://pocky
 ## Structure
 
 - `src/data/site.ts` – owner, address, e-mail, profile links (TODO placeholders until decided)
-- `src/data/apps.ts` – app list (name, package, icon, screenshots) used by home page and app pages
-- `src/pages/` – one file per page: home, `apps/<slug>/`, `apps/<slug>/datenschutz/`, `ueber-mich`, `impressum`, `datenschutz`, `404`
+- `src/data/i18n.ts` – languages, the German/English path of every page (`routes`) and shared UI strings
+- `src/data/apps.ts` – app texts per language (name, tagline, facts, screenshots) used by home page and app pages
+- `src/pages/` – German pages at the root (home, `apps/<slug>/`, `apps/<slug>/privacy/`, `about-me`, `imprint`, `privacy`, `404`), English pages with the same paths under `src/pages/en/`
 - `public/app-ads.txt` – AdMob seller record for the Kfz Kennzeichen Finder
 - `.github/workflows/deploy.yml` – builds on push to `main` and deploys to GitHub Pages
 
 ## Go-live checklist
 
 1. Fill the TODOs in `src/data/site.ts` (name, address, e-mail, LinkedIn, XING)
-2. Have the privacy policy drafts checked (`/datenschutz/`, `/apps/*/datenschutz/`)
+2. Have the privacy policy drafts checked (`/privacy/`, `/apps/*/privacy/` and the English versions under `/en/`)
 3. Settings > Pages > Source: GitHub Actions (already possible during development, pages are `noindex`)
 4. Domain: in `astro.config.mjs` set `site` to the domain and remove `base`, add `public/CNAME` and a `public/robots.txt` with the sitemap URL, set `preview: false` in `src/data/site.ts`, configure DNS (A records to GitHub Pages or Cloudflare, `www` CNAME to `pockydev.github.io`), enable "Enforce HTTPS". `app-ads.txt` only works at the domain root, so AdMob verification needs the own domain.
 5. Play Console: website and privacy policy URL of both apps; AdMob: verify app-ads.txt

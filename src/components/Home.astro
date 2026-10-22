@@ -1,0 +1,80 @@
+---
+import { url } from '../data/url';
+import Base from '../layouts/Base.astro';
+import AppCard from './AppCard.astro';
+import { getApps } from '../data/apps';
+import type { Lang } from '../data/i18n';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const text = {
+  de: {
+    logoAlt: 'PockyDev-Corgi',
+    title: 'Android-Apps ohne Schnickschnack',
+    claim: 'Einfach, schnell und mit Liebe zum Detail. Made in Germany von PockyDev.',
+    cta: 'Zu den Apps',
+    apps: 'Meine Apps',
+    values: 'Was meine Apps ausmacht',
+    items: [
+      ['Einfach', 'Eine App, eine Aufgabe. Öffnen, tippen, fertig – ohne Anmeldung und ohne Umwege.'],
+      ['Offline', 'Die wichtigsten Funktionen laufen ohne Internet, im Funkloch genauso wie im Keller.'],
+      ['Fair', 'Kostenlos, sparsam mit Daten und gepflegt. Feedback lese ich selbst.'],
+    ],
+  },
+  en: {
+    logoAlt: 'PockyDev corgi',
+    title: 'Android apps without the fuss',
+    claim: 'Simple, fast and made with attention to detail. Made in Germany by PockyDev.',
+    cta: 'See the apps',
+    apps: 'My apps',
+    values: 'What my apps stand for',
+    items: [
+      ['Simple', 'One app, one job. Open, type, done – no sign-up, no detours.'],
+      ['Offline', 'The core features work without internet, in a dead zone just as well as in the basement.'],
+      ['Fair', 'Free, sparing with data and well maintained. I read all feedback myself.'],
+    ],
+  },
+}[lang];
+---
+<Base title="PockyDev" lang={lang} routeKey="home">
+  <section class="hero">
+    <div class="container inner">
+      <img class="logo" src={url("/images/corgi-logo.png")} alt={text.logoAlt} width="160" height="160" />
+      <div>
+        <h1>{text.title}</h1>
+        <p class="claim">{text.claim}</p>
+        <a class="btn light" href="#apps">{text.cta}</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="apps" class="container">
+    <h2>{text.apps}</h2>
+    <div class="grid">
+      {getApps(lang).map((app) => <AppCard app={app} lang={lang} />)}
+    </div>
+  </section>
+
+  <section class="container values">
+    <h2>{text.values}</h2>
+    <div class="grid three">
+      {text.items.map(([heading, body]) => <div><h3>{heading}</h3><p>{body}</p></div>)}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    background: radial-gradient(120% 140% at 0% 0%, var(--indigo), var(--blue) 45%, var(--teal));
+    color: #fff; padding: 72px 0;
+  }
+  .inner { display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
+  .inner > div { flex: 1 1 320px; }
+  .logo { width: 160px; height: 160px; border-radius: 50%; box-shadow: 0 12px 40px rgb(0 0 0 / 0.3); }
+  .claim { font-size: 1.2rem; max-width: 560px; opacity: 0.92; margin: 0 0 24px; }
+  .btn.light { background: var(--corgi); color: var(--navy); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+  .grid.three { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+  .values h3 { margin-top: 0; color: var(--corgi); }
+  .values p { margin: 0; color: var(--muted); }
+  #apps { scroll-margin-top: 80px; }
+</style>

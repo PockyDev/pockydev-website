@@ -1,9 +1,9 @@
 ---
 import AppPage from '../../../components/AppPage.astro';
-import { apps } from '../../../data/apps';
-const app = apps.find((a) => a.slug === 'kfz-kennzeichen-finder')!;
+import { getApp } from '../../../data/apps';
+const app = getApp('kfz-kennzeichen-finder', 'de');
 ---
-<AppPage app={app} category="TravelApplication" description="Kfz Kennzeichen Finder: Woher kommt das Auto? Über 900 Kfz-Kennzeichen aus Deutschland, Österreich und der Schweiz – mit Karte, Wikipedia-Info und offline nutzbar. Kostenlos für Android.">
+<AppPage app={app} lang="de" category="TravelApplication" description="Kfz Kennzeichen Finder: Woher kommt das Auto? Über 900 Kfz-Kennzeichen aus Deutschland, Österreich und der Schweiz – mit Karte, Wikipedia-Info und offline nutzbar. Kostenlos für Android.">
   <p>Woher stammt das Kennzeichen KF? Was bedeutet NWM? Und welcher Kanton steckt hinter GE? Mit dem Kfz Kennzeichen Finder siehst du sofort, aus welcher Stadt, welchem Landkreis oder welchem Kanton ein Auto kommt – für Deutschland, Österreich und die Schweiz in einer App.</p>
 
   <h2>Über 900 Kennzeichen</h2>
