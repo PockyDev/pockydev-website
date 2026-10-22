@@ -1,0 +1,42 @@
+---
+import AppPage from '../../../components/AppPage.astro';
+import { apps } from '../../../data/apps';
+const app = apps.find((a) => a.slug === 'kfz-kennzeichen-finder')!;
+---
+<AppPage app={app} category="TravelApplication" description="Kfz Kennzeichen Finder: Woher kommt das Auto? Über 900 Kfz-Kennzeichen aus Deutschland, Österreich und der Schweiz – mit Karte, Wikipedia-Info und offline nutzbar. Kostenlos für Android.">
+  <p>Woher stammt das Kennzeichen KF? Was bedeutet NWM? Und welcher Kanton steckt hinter GE? Mit dem Kfz Kennzeichen Finder siehst du sofort, aus welcher Stadt, welchem Landkreis oder welchem Kanton ein Auto kommt – für Deutschland, Österreich und die Schweiz in einer App.</p>
+
+  <h2>Über 900 Kennzeichen</h2>
+  <ul>
+    <li><strong>771 Kürzel aus Deutschland</strong>, inklusive wieder eingeführter Altkennzeichen wie AIB (Bad Aibling) oder WAT (Wattenscheid)</li>
+    <li><strong>106 Bezirkskennzeichen aus Österreich</strong>, z. B. W (Wien), G (Graz), KB (Kitzbühel)</li>
+    <li><strong>26 Kantonskürzel aus der Schweiz</strong>, z. B. ZH (Zürich), BE (Bern), GE (Genf)</li>
+  </ul>
+
+  <h2>Detailseite zu jedem Kennzeichen</h2>
+  <ul>
+    <li>Karte mit der Lage des Ortes</li>
+    <li>Kurzinfo aus Wikipedia in deiner Sprache, mit Link zum ganzen Artikel</li>
+    <li>Ortsnamen vorlesen lassen – in der Sprache des Ortes</li>
+  </ul>
+
+  <h2>Beispiele</h2>
+  <ul>
+    <li>HH → Hansestadt Hamburg</li>
+    <li>M → München</li>
+    <li>KF → Kaufbeuren (Bayern)</li>
+    <li>NWM → Nordwestmecklenburg (Mecklenburg-Vorpommern)</li>
+    <li>W → Wien</li>
+    <li>GE → Genf</li>
+  </ul>
+
+  <h2>Häufige Fragen</h2>
+  <h3>Funktioniert die App offline?</h3>
+  <p>Ja. Die Suche und die Liste aller Kennzeichen funktionieren ohne Internet. Nur die Karte und die Wikipedia-Infos auf der Detailseite brauchen eine Verbindung.</p>
+  <h3>Sind auch alte Kennzeichen dabei?</h3>
+  <p>Ja, die wieder eingeführten Altkennzeichen aus Deutschland sind enthalten, zum Beispiel AIB (Bad Aibling), WOR (Wolfratshausen) oder SOG (Schongau).</p>
+  <h3>Woher stammen die Daten?</h3>
+  <p>Aus den Wikipedia-Listen der Kfz-Kennzeichen für Deutschland, Österreich und die Schweiz. Die Daten werden regelmäßig geprüft und aktualisiert, zuletzt im Oktober 2026.</p>
+  <h3>Was kostet die App?</h3>
+  <p>Nichts. Die App ist kostenlos und finanziert sich über Werbung.</p>
+</AppPage>

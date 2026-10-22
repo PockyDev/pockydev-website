@@ -1,0 +1,13 @@
+# PockyDev website
+
+Static website for PockyDev (Tim's Android apps Kfz Kennzeichen Finder and Phonea). Astro 5, plain CSS, deployed to GitHub Pages by `.github/workflows/deploy.yml` on push to `main`. Communicate with Tim in German; code, commits and docs stay in English.
+
+## Build
+- `npm ci && npm run build` (output in `dist/`), `npm run dev` for local preview
+
+## Rules
+- No cookies, no tracking, no third-party scripts, fonts or embeds. If that ever changes, the privacy pages must change in the same PR.
+- Work on a branch and open a PR; `main` deploys.
+- Placeholders and shared values (owner, address, e-mail, profile links) live in `src/data/site.ts`; app data in `src/data/apps.ts`.
+- App facts (feature lists, numbers, versions) come from the apps' Play Store texts; keep them in sync when an app's listing changes.
+- When an app adds or removes an SDK or data flow, update its page under `src/pages/apps/<slug>/datenschutz/`.

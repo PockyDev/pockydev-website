@@ -1,0 +1,36 @@
+---
+import AppPage from '../../../components/AppPage.astro';
+import { apps } from '../../../data/apps';
+const app = apps.find((a) => a.slug === 'phonea')!;
+---
+<AppPage app={app} category="UtilitiesApplication" description="Phonea ist eine Buchstabiertafel für Android: jedes Wort sicher buchstabieren am Telefon mit DIN 5009, NATO-Alphabet und mehr. Kostenlos, ohne Werbung, offline.">
+  <p>Phonea ist eine Buchstabiertafel für dein Handy: Du tippst ein Wort ein, und Phonea zeigt dir für jeden Buchstaben das passende Ansagewort. So buchstabierst du Namen, E-Mail-Adressen oder Kundennummern am Telefon sicher und ohne Nachfragen.</p>
+  <p>Aus „Meier“ wird zum Beispiel: München, Essen, Ingelheim, Essen, Rostock.</p>
+
+  <h2>Buchstabiertafeln in Phonea</h2>
+  <ul>
+    <li><strong>Deutschland – DIN 5009:2022</strong> mit Städtenamen (Aachen, Berlin, Chemnitz …), die aktuelle Norm</li>
+    <li><strong>Deutschland bis 2022</strong> – die bekannte Tafel mit Vornamen (Anton, Berta, Cäsar …)</li>
+    <li><strong>Deutschland bis 1934</strong> – die historische Tafel (Albert, Bernhard, Cäsar …)</li>
+    <li><strong>NATO-Alphabet</strong> / internationales Funkalphabet (Alfa, Bravo, Charlie …)</li>
+    <li><strong>Frankreich</strong> (Anatole, Berthe, Célestine …)</li>
+    <li><strong>Italien</strong> (Ancona, Bari, Como …)</li>
+  </ul>
+  <p>Umlaute und ß buchstabiert Phonea nach DIN 5009 mit („Umlaut Aachen“, „Eszett“).</p>
+
+  <h2>So funktioniert es</h2>
+  <ol>
+    <li>Wort eingeben</li>
+    <li>Buchstabiertafel wählen</li>
+    <li>Die Ansagewörter vorlesen – fertig</li>
+  </ol>
+  <p>Wörter, die du oft brauchst, etwa deinen Nachnamen oder deine E-Mail-Adresse, speicherst du als Favorit.</p>
+
+  <h2>Häufige Fragen</h2>
+  <h3>Was ist die Buchstabiertafel nach DIN 5009?</h3>
+  <p>DIN 5009 ist die deutsche Norm für das Buchstabieren. Seit 2022 nutzt sie Städtenamen wie Aachen, Berlin und Chemnitz statt Vornamen wie Anton, Berta und Cäsar. Phonea bietet die neue und die alte Tafel an.</p>
+  <h3>Was ist der Unterschied zum NATO-Alphabet?</h3>
+  <p>Das NATO-Alphabet (Alfa, Bravo, Charlie) ist international und wird in Luftfahrt, Funk und bei Gesprächen auf Englisch genutzt. Für Telefonate auf Deutsch ist die deutsche Buchstabiertafel üblich.</p>
+  <h3>Brauche ich Internet?</h3>
+  <p>Nein. Alle Buchstabiertafeln sind in der App gespeichert.</p>
+</AppPage>

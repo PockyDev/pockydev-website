@@ -1,0 +1,53 @@
+---
+import Base from '../layouts/Base.astro';
+import { type App, playStoreUrl } from '../data/apps';
+interface Props { app: App; description: string; category: string }
+const { app, description, category } = Astro.props;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: app.name,
+  operatingSystem: 'Android',
+  applicationCategory: category,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
+  author: { '@type': 'Organization', name: 'PockyDev', url: Astro.site?.toString() },
+  downloadUrl: playStoreUrl(app),
+};
+---
+<Base title={app.name} description={description}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(jsonLd)} />
+  <section class="hero">
+    <div class="container intro">
+      <img src={app.icon} alt="" width="112" height="112" />
+      <div>
+        <h1>{app.name}</h1>
+        <p class="lead">{app.tagline}</p>
+        <ul class="chips">{app.facts.map((f) => <li>{f}</li>)}</ul>
+        <p><a class="btn" href={playStoreUrl(app)}>Jetzt bei Google Play laden</a></p>
+      </div>
+    </div>
+  </section>
+  <section class="container">
+    <div class="shots" role="list">
+      {app.screenshots.map((s) => <img role="listitem" src={s.src} alt={s.alt} width="540" height="960" loading="lazy" />)}
+    </div>
+  </section>
+  <section class="container">
+    <div class="prose">
+    <slot />
+    <h2>Datenschutz</h2>
+    <p>Wie {app.name} mit Daten umgeht, steht in der <a href={`/apps/${app.slug}/datenschutz/`}>Datenschutzerklärung der App</a>.</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { padding: 56px 0 24px; }
+  .intro { display: flex; gap: 28px; align-items: center; flex-wrap: wrap; }
+  .intro img { border-radius: 26px; box-shadow: 0 10px 30px rgb(30 27 75 / 0.18); }
+  .intro > div { flex: 1 1 300px; }
+  h1 { margin-bottom: 0.2em; }
+  .lead { font-size: 1.2rem; color: var(--muted); margin: 0 0 14px; }
+  .shots { display: flex; gap: 16px; overflow-x: auto; padding: 16px 0 8px; scroll-snap-type: x mandatory; }
+  .shots img { width: 220px; flex: none; border-radius: 20px; border: 1px solid var(--border); scroll-snap-align: start; }
+</style>

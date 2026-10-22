@@ -1,0 +1,50 @@
+---
+import Base from '../layouts/Base.astro';
+import AppCard from '../components/AppCard.astro';
+import { apps } from '../data/apps';
+---
+<Base title="PockyDev">
+  <section class="hero">
+    <div class="container inner">
+      <img class="logo" src="/images/corgi-logo.png" alt="PockyDev-Corgi" width="160" height="160" />
+      <div>
+        <h1>Android-Apps ohne Schnickschnack</h1>
+        <p class="claim">Einfach, schnell und mit Liebe zum Detail. Made in Germany von PockyDev.</p>
+        <a class="btn light" href="#apps">Zu den Apps</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="apps" class="container">
+    <h2>Meine Apps</h2>
+    <div class="grid">
+      {apps.map((app) => <AppCard app={app} />)}
+    </div>
+  </section>
+
+  <section class="container values">
+    <h2>Was meine Apps ausmacht</h2>
+    <div class="grid three">
+      <div><h3>Einfach</h3><p>Eine App, eine Aufgabe. Öffnen, tippen, fertig – ohne Anmeldung und ohne Umwege.</p></div>
+      <div><h3>Offline</h3><p>Die wichtigsten Funktionen laufen ohne Internet, im Funkloch genauso wie im Keller.</p></div>
+      <div><h3>Fair</h3><p>Kostenlos, sparsam mit Daten und gepflegt. Feedback lese ich selbst.</p></div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    background: radial-gradient(120% 140% at 0% 0%, var(--indigo), var(--blue) 45%, var(--teal));
+    color: #fff; padding: 72px 0;
+  }
+  .inner { display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
+  .inner > div { flex: 1 1 320px; }
+  .logo { width: 160px; height: 160px; border-radius: 50%; box-shadow: 0 12px 40px rgb(0 0 0 / 0.3); }
+  .claim { font-size: 1.2rem; max-width: 560px; opacity: 0.92; margin: 0 0 24px; }
+  .btn.light { background: var(--corgi); color: var(--navy); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+  .grid.three { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+  .values h3 { margin-top: 0; color: var(--corgi); }
+  .values p { margin: 0; color: var(--muted); }
+  #apps { scroll-margin-top: 80px; }
+</style>
