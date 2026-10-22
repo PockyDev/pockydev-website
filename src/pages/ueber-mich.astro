@@ -8,13 +8,13 @@ const profiles = [
   { label: 'XING', href: site.links.xing },
 ].filter((p) => !p.href.startsWith('TODO'));
 ---
-<Base title="Über mich" description="Hinter PockyDev steckt Tim, Softwareentwickler aus Norddeutschland, der in seiner Freizeit praktische Android-Apps baut.">
+<Base title="Über mich" description="Tim, Softwareentwickler aus Reinfeld bei Lübeck: seit 2014 professionell in der Softwareentwicklung, heute Führungskraft, nebenbei Android-Apps unter dem Namen PockyDev.">
   <section class="container prose about">
-    <img src={url("/images/corgi-logo.png")} alt="" width="120" height="120" />
+    <img class="portrait" src={url("/images/tim.webp")} alt={site.owner} width="160" height="160" />
     <h1>Hi, ich bin Tim</h1>
-    <p>Hinter PockyDev stecke ich: Softwareentwickler aus Norddeutschland. In meiner Freizeit baue ich kleine Android-Apps, die genau eine Sache richtig gut machen sollen.</p>
-    <p>Angefangen hat es 2020 mit dem Kfz Kennzeichen Finder. Später kam Phonea dazu, damit am Telefon niemand mehr „Wie war das? M wie …?“ fragen muss.</p>
-    <p>Mir ist wichtig, dass die Apps schnell sind, offline funktionieren und sparsam mit Daten umgehen. Und ja: Der Corgi ist kein Zufall.</p>
+    <p>Ich bin Tim, Softwareentwickler aus Reinfeld bei Lübeck. PockyDev ist der Ort, an dem ich selbst code.</p>
+    <p>Nach meinem Informatik-Studium an der TH Lübeck entwickle ich seit 2014 professionell Software, erst mit Java, ab 2018 als Android-Entwickler. Inzwischen arbeite ich im Job als Führungskraft in der Entwicklung, mit Teams, Planung und vielen Meetings.</p>
+    <p>Abends und am Wochenende baue ich dafür umso lieber eigene Android-Apps mit Kotlin und Jetpack Compose, von der Idee bis zum Release im Play Store. KI-Werkzeuge wie Claude Code sind dabei fester Teil meines Workflows, von der Planung über den Code bis zu den Tests.</p>
     <h2>Profile</h2>
     <ul class="profiles">
       {profiles.map((p) => <li><a class="btn secondary" href={p.href} rel="me">{p.label}</a></li>)}
@@ -26,6 +26,6 @@ const profiles = [
 
 <style>
   .about { padding-top: 56px; }
-  .about img { border-radius: 50%; margin-bottom: 20px; }
+  .portrait { border-radius: 50%; margin-bottom: 20px; box-shadow: 0 0 0 4px var(--bg), 0 0 0 7px var(--corgi); }
   .profiles { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
 </style>
