@@ -7,7 +7,7 @@ import { route } from '../../data/i18n';
 <Base title="Privacy policy" lang="en" routeKey="privacy" description="Privacy policy of the PockyDev website">
   <section class="container prose page">
     <h1>Privacy policy</h1>
-    <p class="note">Draft, October 2026 – to be reviewed before going live. The German version is legally binding.</p>
+    <p class="note">Last updated: October 2026. The German version is legally binding.</p>
     <p>This policy covers this website. Each app has its own policy:</p>
     <ul>{getApps('en').map((a) => <li><a href={route(`privacy:${a.slug}`, 'en')}>{a.name}</a></li>)}</ul>
 

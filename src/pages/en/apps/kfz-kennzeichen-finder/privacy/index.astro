@@ -5,14 +5,14 @@ import RightsSection from '../../../../../components/RightsSection.astro';
 <Base title="Privacy policy License Plate Finder" lang="en" routeKey="privacy:kfz-kennzeichen-finder" description="Privacy policy of the app License Plate Finder (Kfz Kennzeichen Finder)">
   <section class="container prose page">
     <h1>Privacy policy License Plate Finder</h1>
-    <p class="note">Draft, October 2026 (app version 1.18) – to be reviewed before going live. The German version is legally binding.</p>
+    <p class="note">Last updated: October 2026 (app version 1.18). The German version is legally binding.</p>
 
     <h2>In short</h2>
     <p>License Plate Finder needs no account. The search runs offline on your device. The app is funded by ads from Google AdMob; before showing them it asks whether personalised ads are allowed. For usage statistics and crash reports the app uses Firebase. The map and the Wikipedia summary on the detail page load data from Google and Wikipedia.</p>
 
     <RightsSection lang="en">
       <h2>Data on your device</h2>
-      <p>Search terms and settings stay on your device and are not sent to me.</p>
+      <p>The registration code data is part of the app, and the search runs on your device. Settings (e.g. country and theme) are only stored locally.</p>
 
       <h2>Consent (Google User Messaging Platform)</h2>
       <p>On launch the app shows a consent dialog from the Google User Messaging Platform (UMP). There you decide whether personalised ads are allowed. Your choice is stored on the device and can be changed in the app at any time.</p>
@@ -21,11 +21,11 @@ import RightsSection from '../../../../../components/RightsSection.astro';
       <p>The app shows ads via Google AdMob by Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland. This processes, among other things, your device's advertising ID, IP address, device data and information about ad impressions and clicks. Personalised ads are only shown with your consent (Art. 6 (1) (a) GDPR); without consent, non-personalised ads are served. You can reset or delete the advertising ID in your Android settings. More: <a href="https://policies.google.com/technologies/ads">How Google uses data for advertising</a>.</p>
 
       <h2>Firebase Analytics, Crashlytics and Remote Config</h2>
-      <p>The app uses Firebase Analytics (usage statistics) and Firebase Crashlytics (crash reports). Both are active as soon as you use the app. They process, for example, a random app instance ID, device model, Android version, app version, approximate region and usage or crash information. The data helps me find bugs and improve the app. The legal basis is Art. 6 (1) (f) GDPR (legitimate interest: a stable and improved app). You can switch both off at any time in the app's settings, and you can also object to the processing by e-mail.</p>
-      <p>Firebase Remote Config loads settings for the app (e.g. for ads) from Google servers. This processes technically necessary data such as your IP address and app instance ID (Art. 6 (1) (f) GDPR; the legitimate interest is running the app reliably). More: <a href="https://firebase.google.com/support/privacy">Privacy and security in Firebase</a>.</p>
+      <p>The app uses Firebase Analytics (usage statistics) and Firebase Crashlytics (crash reports). Both are active as soon as you use the app. They process, for example, a random app instance ID, device model, Android version, app version, approximate region and usage or crash information. Usage information includes the screens you open, the results you tap and the search terms you enter (registration codes or place names), so I can see what people look for and what is not found. The data helps me find bugs and improve the app. The legal basis is Art. 6 (1) (f) GDPR (legitimate interest: a stable and improved app). You can switch both off at any time in the app's settings, and you can also object to the processing by e-mail.</p>
+      <p>Firebase Remote Config loads settings for the app (e.g. when the app asks for a rating) from Google servers. This processes technically necessary data such as your IP address and app instance ID (Art. 6 (1) (f) GDPR; the legitimate interest is running the app reliably). More: <a href="https://firebase.google.com/support/privacy">Privacy and security in Firebase</a>.</p>
 
       <h2>Map (Google Maps)</h2>
-      <p>The detail page shows a map from the Google Maps SDK for Android. When the map loads, your IP address and the map area shown are sent to Google. The app does not use your location. The legal basis is Art. 6 (1) (f) GDPR (legitimate interest: showing where the place is). More: <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.</p>
+      <p>The detail page shows a map from the Google Maps SDK for Android. When the map loads, your IP address and the map area shown are sent to Google. If no position is stored for a place, the app looks it up with your Android device's geocoder service (usually provided by Google), which sends the place name. The app does not use your location. The legal basis is Art. 6 (1) (f) GDPR (legitimate interest: showing where the place is). More: <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.</p>
 
       <h2>Wikipedia summaries</h2>
       <p>For the summary on the detail page, the app fetches the article via the Wikipedia API. The Wikimedia Foundation, Inc. (San Francisco, USA) receives your IP address and the requested article. The legal basis is Art. 6 (1) (f) GDPR. More: <a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy">Wikimedia Foundation Privacy Policy</a>. The texts are licensed under CC BY-SA 4.0.</p>

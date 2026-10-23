@@ -7,7 +7,7 @@ import { route } from '../data/i18n';
 <Base title="Datenschutz" routeKey="privacy" description="Datenschutzerklärung der PockyDev-Webseite">
   <section class="container prose page">
     <h1>Datenschutzerklärung</h1>
-    <p class="note">Entwurf, Stand Oktober 2026 – vor dem Livegang prüfen.</p>
+    <p class="note">Stand: Oktober 2026.</p>
     <p>Diese Erklärung gilt für diese Webseite. Für die Apps gibt es eigene Erklärungen:</p>
     <ul>{getApps('de').map((a) => <li><a href={route(`privacy:${a.slug}`, 'de')}>{a.name}</a></li>)}</ul>
 

@@ -26,9 +26,9 @@ During development the site runs as a GitHub Pages project site at https://pocky
 
 ## Go-live checklist
 
-1. Fill the TODOs in `src/data/site.ts` (name, address, e-mail, LinkedIn, XING)
-2. Have the privacy policy drafts checked (`/privacy/`, `/apps/*/privacy/` and the English versions under `/en/`)
-3. Settings > Pages > Source: GitHub Actions (already possible during development, pages are `noindex`)
+1. ~~Fill `src/data/site.ts`~~ done
+2. ~~Check the privacy policies against the apps' code~~ done (October 2026); re-check when an app adds or removes an SDK or data flow
+3. ~~Settings > Pages > Source: GitHub Actions~~ done
 4. Domain: in `astro.config.mjs` set `site` to the domain and remove `base`, add `public/CNAME` and a `public/robots.txt` with the sitemap URL, set `preview: false` in `src/data/site.ts`, configure DNS (A records to GitHub Pages or Cloudflare, `www` CNAME to `pockydev.github.io`), enable "Enforce HTTPS". `app-ads.txt` only works at the domain root, so AdMob verification needs the own domain.
 5. Play Console: website and privacy policy URL of both apps; AdMob: verify app-ads.txt
 6. Google Search Console: verify domain, submit `sitemap-index.xml`
