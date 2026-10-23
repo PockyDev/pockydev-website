@@ -48,6 +48,9 @@ const alternates = routeKey
     <meta property="og:locale" content={t.ogLocale} />
     <meta name="twitter:card" content="summary_large_image" />
     <slot name="head" />
+    {site.cloudflareAnalyticsToken && (
+      <script is:inline type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={JSON.stringify({ token: site.cloudflareAnalyticsToken })}></script>
+    )}
   </head>
   <body>
     <a class="skip" href="#main">{t.skip}</a>
