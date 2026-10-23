@@ -13,7 +13,7 @@ npm run check    # after build: links, language pairs, HTML validation
 
 Astro 7 needs Node 22.23.4 or newer (`engines` in `package.json`); CI and deploy use Node 24.
 
-During development the site runs as a GitHub Pages project site at https://pockydev.github.io/pockydev-website/ (`base: '/pockydev-website'` in `astro.config.mjs`) and every page carries `noindex` (`preview: true` in `src/data/site.ts`). Always build internal links and image paths with `url()` from `src/data/url.ts` so they work with and without the base path.
+The site runs on GitHub Pages under the custom domain https://pockydev.de (`public/CNAME`, no `base`). `preview: true` in `src/data/site.ts` puts `noindex` on every page. Always build internal links and image paths with `url()` from `src/data/url.ts` so they work with and without a base path.
 
 ## Structure
 
@@ -29,6 +29,6 @@ During development the site runs as a GitHub Pages project site at https://pocky
 1. ~~Fill `src/data/site.ts`~~ done
 2. ~~Check the privacy policies against the apps' code~~ done (October 2026); re-check when an app adds or removes an SDK or data flow
 3. ~~Settings > Pages > Source: GitHub Actions~~ done
-4. Domain: in `astro.config.mjs` set `site` to the domain and remove `base`, add `public/CNAME` and a `public/robots.txt` with the sitemap URL, set `preview: false` in `src/data/site.ts`, configure DNS (A records to GitHub Pages or Cloudflare, `www` CNAME to `pockydev.github.io`), enable "Enforce HTTPS". `app-ads.txt` only works at the domain root, so AdMob verification needs the own domain.
+4. Domain: ~~`site`, `base`, `public/CNAME`, `public/robots.txt`, `preview: false`~~ done; configure DNS (A records to GitHub Pages or Cloudflare, `www` CNAME to `pockydev.github.io`), enable "Enforce HTTPS". `app-ads.txt` only works at the domain root, so AdMob verification needs the own domain.
 5. Play Console: website and privacy policy URL of both apps; AdMob: verify app-ads.txt
 6. Google Search Console: verify domain, submit `sitemap-index.xml`
