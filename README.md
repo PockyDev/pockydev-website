@@ -11,7 +11,7 @@ npm run build    # output in dist/
 npm run check    # after build: links, language pairs, HTML validation
 ```
 
-Astro 5 needs Node 18.20+, 20.3+ or 22.
+Astro 7 needs Node 22.23.4 or newer (`engines` in `package.json`); CI and deploy use Node 24.
 
 During development the site runs as a GitHub Pages project site at https://pockydev.github.io/pockydev-website/ (`base: '/pockydev-website'` in `astro.config.mjs`) and every page carries `noindex` (`preview: true` in `src/data/site.ts`). Always build internal links and image paths with `url()` from `src/data/url.ts` so they work with and without the base path.
 

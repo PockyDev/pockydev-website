@@ -1,6 +1,6 @@
 # PockyDev website
 
-Static website for PockyDev (Tim's Android apps Kfz Kennzeichen Finder and Phonea). Astro 5, plain CSS, deployed to GitHub Pages by `.github/workflows/deploy.yml` on push to `main`. Communicate with Tim in German; code, commits and docs stay in English.
+Static website for PockyDev (Tim's Android apps Kfz Kennzeichen Finder and Phonea). Astro 7 (Node >= 22.23.4), plain CSS, deployed to GitHub Pages by `.github/workflows/deploy.yml` on push to `main`. Communicate with Tim in German; code, commits and docs stay in English.
 
 ## Build
 - `npm ci && npm run build` (output in `dist/`), `npm run dev` for local preview
