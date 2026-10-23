@@ -4,6 +4,7 @@ Static website for PockyDev (Tim's Android apps Kfz Kennzeichen Finder and Phone
 
 ## Build
 - `npm ci && npm run build` (output in `dist/`), `npm run dev` for local preview
+- `npm run check` after the build, as in CI (`.github/workflows/check.yml`, runs on every PR): `scripts/check-dist.mjs` checks internal links, assets and anchors, the `url()` base and that every page has a German and English version linked by `hreflang`; `html-validate` (`.htmlvalidate.json`) validates the HTML. Keep both green; don't switch off a rule to get there without a reason in the PR
 
 ## Rules
 - No cookies, no tracking, no third-party scripts, fonts or embeds. If that ever changes, the privacy pages must change in the same PR.

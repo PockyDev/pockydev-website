@@ -6,10 +6,14 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "check": "node scripts/check-dist.mjs && html-validate dist"
   },
   "dependencies": {
-    "astro": "^5.18.2",
-    "@astrojs/sitemap": "^3.6.0"
+    "@astrojs/sitemap": "^3.6.0",
+    "astro": "^5.18.2"
+  },
+  "devDependencies": {
+    "html-validate": "^9.7.1"
   }
 }

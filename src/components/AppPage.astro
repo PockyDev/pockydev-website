@@ -31,9 +31,9 @@ const jsonLd = {
     </div>
   </section>
   <section class="container">
-    <div class="shots" role="list">
-      {app.screenshots.map((s) => <img role="listitem" src={s.src} alt={s.alt} width="540" height="960" loading="lazy" />)}
-    </div>
+    <ul class="shots">
+      {app.screenshots.map((s) => <li><img src={s.src} alt={s.alt} width="540" height="960" loading="lazy" /></li>)}
+    </ul>
   </section>
   <section class="container">
     <div class="prose">
@@ -51,6 +51,7 @@ const jsonLd = {
   .intro > div { flex: 1 1 300px; }
   h1 { margin-bottom: 0.2em; }
   .lead { font-size: 1.2rem; color: var(--muted); margin: 0 0 14px; }
-  .shots { display: flex; gap: 16px; overflow-x: auto; padding: 16px 0 8px; scroll-snap-type: x mandatory; }
-  .shots img { width: 220px; flex: none; border-radius: 20px; border: 1px solid var(--border); scroll-snap-align: start; }
+  .shots { display: flex; gap: 16px; overflow-x: auto; margin: 0; padding: 16px 0 8px; list-style: none; scroll-snap-type: x mandatory; }
+  .shots li { flex: none; margin: 0; scroll-snap-align: start; }
+  .shots img { display: block; width: 220px; border-radius: 20px; border: 1px solid var(--border); }
 </style>
