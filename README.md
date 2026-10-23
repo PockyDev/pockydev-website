@@ -8,6 +8,7 @@ Static website for PockyDev (Android apps Kfz Kennzeichen Finder and Phonea), bu
 npm install
 npm run dev      # http://localhost:4321
 npm run build    # output in dist/
+npm run check    # after build: links, language pairs, HTML validation
 ```
 
 Astro 5 needs Node 18.20+, 20.3+ or 22.
