@@ -17,7 +17,7 @@ const page = route(`app:${app.slug}`, lang);
   <p>{app.teaser}</p>
   <ul class="chips">{app.facts.map((f) => <li>{f}</li>)}</ul>
   <div class="actions">
-    <a class="btn" href={playStoreUrl(app, lang)}>{t.getOnPlay}</a>
+    <a class="btn" href={playStoreUrl(app, lang, 'home')}>{t.getOnPlay}</a>
     <a class="btn secondary" href={page}>{t.learnMore}</a>
   </div>
 </article>

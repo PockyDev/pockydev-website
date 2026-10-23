@@ -26,7 +26,7 @@ const jsonLd = {
         <h1>{app.name}</h1>
         <p class="lead">{app.tagline}</p>
         <ul class="chips">{app.facts.map((f) => <li>{f}</li>)}</ul>
-        <p><a class="btn" href={playStoreUrl(app, lang)}>{t.getOnPlayLong}</a></p>
+        <p><a class="btn" href={playStoreUrl(app, lang, 'app_page')}>{t.getOnPlayLong}</a></p>
       </div>
     </div>
   </section>

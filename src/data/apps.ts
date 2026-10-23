@@ -12,8 +12,14 @@ export interface App {
   screenshots: { src: string; alt: string }[];
 }
 
-export const playStoreUrl = (app: App, lang: Lang) =>
-  `https://play.google.com/store/apps/details?id=${app.packageName}&hl=${lang}`;
+// With a campaign, the link carries a Play install referrer (UTM), so the Play Console
+// shows store visits and installs from the website per campaign.
+export const playStoreUrl = (app: App, lang: Lang, campaign?: string) => {
+  const url = `https://play.google.com/store/apps/details?id=${app.packageName}&hl=${lang}`;
+  if (!campaign) return url;
+  const referrer = `utm_source=pockydev_website&utm_medium=website&utm_campaign=${campaign}`;
+  return `${url}&referrer=${encodeURIComponent(referrer)}`;
+};
 
 const appsByLang: Record<Lang, App[]> = {
   de: [
