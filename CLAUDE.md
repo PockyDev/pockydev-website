@@ -7,7 +7,7 @@ Static website for PockyDev (Tim's Android apps Kfz Kennzeichen Finder and Phone
 - `npm run check` after the build, as in CI (`.github/workflows/check.yml`, runs on every PR): `scripts/check-dist.mjs` checks internal links, assets and anchors, the `url()` base and that every page has a German and English version linked by `hreflang`; `html-validate` (`.htmlvalidate.json`) validates the HTML. Keep both green; don't switch off a rule to get there without a reason in the PR
 
 ## Rules
-- No cookies, no tracking, no third-party scripts, fonts or embeds. If that ever changes, the privacy pages must change in the same PR.
+- No cookies and no third-party fonts or embeds. The only third-party script is Cloudflare Web Analytics (cookieless, token in `site.cloudflareAnalyticsToken`, Tim's choice 23.10.2026). Anything else that loads from or sends data to third parties needs Tim's OK, and the privacy pages must change in the same PR.
 - Work on a branch and open a PR; `main` deploys.
 - Build internal links and asset paths with `url()` from `src/data/url.ts`; the site runs under the base `/pockydev-website` until the own domain is live.
 - The site is German (root) and English (`/en/`). Every page exists in both languages: use English path names in both languages (`/about-me/`, `/en/about-me/`), register the pair in `routes` in `src/data/i18n.ts`, pass `lang` and `routeKey` to `Base`, and change both versions in the same PR. Shared UI strings live in `ui` in `src/data/i18n.ts`; app texts per language in `src/data/apps.ts`. The German legal pages are binding.

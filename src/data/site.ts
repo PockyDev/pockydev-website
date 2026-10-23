@@ -8,6 +8,8 @@ export const site = {
   owner: 'Tim Pockczerwinski',
   address: ['Heilsauring 73A', '23858 Reinfeld'],
   email: 'pocky_dev@web.de',
+  // Cloudflare Web Analytics (cookieless). Empty = no analytics script on the pages.
+  cloudflareAnalyticsToken: '',
   links: {
     github: 'https://github.com/PockyDev',
     linkedin: 'https://www.linkedin.com/in/tim-pockczerwinski-5a5313250/',

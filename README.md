@@ -1,6 +1,6 @@
 # PockyDev website
 
-Static website for PockyDev (Android apps Kfz Kennzeichen Finder and Phonea), built with [Astro](https://astro.build) and deployed to GitHub Pages via GitHub Actions. No cookies, no tracking, no external fonts or scripts.
+Static website for PockyDev (Android apps Kfz Kennzeichen Finder and Phonea), built with [Astro](https://astro.build) and deployed to GitHub Pages via GitHub Actions. No cookies, no external fonts; the only third-party script is Cloudflare Web Analytics (cookieless).
 
 ## Develop
 
