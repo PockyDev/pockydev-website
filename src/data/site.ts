@@ -2,7 +2,7 @@
 // Values starting with TODO are placeholders; links starting with TODO are hidden.
 export const site = {
   // true while the site is still in development: every page gets noindex
-  preview: true,
+  preview: false,
   name: 'PockyDev',
   claim: 'Praktische Android-Apps ohne Schnickschnack: einfach, schnell und mit Liebe zum Detail. Made in Germany von PockyDev.',
   owner: 'Tim Pockczerwinski',
