@@ -29,6 +29,6 @@ The site runs on GitHub Pages under the custom domain https://pockydev.de (`publ
 1. ~~Fill `src/data/site.ts`~~ done
 2. ~~Check the privacy policies against the apps' code~~ done (October 2026); re-check when an app adds or removes an SDK or data flow
 3. ~~Settings > Pages > Source: GitHub Actions~~ done
-4. Domain: ~~`site`, `base`, `public/CNAME`, `public/robots.txt`, `preview: false`~~ done; configure DNS (A records to GitHub Pages or Cloudflare, `www` CNAME to `pockydev.github.io`), enable "Enforce HTTPS". `app-ads.txt` only works at the domain root, so AdMob verification needs the own domain.
-5. Play Console: website and privacy policy URL of both apps; AdMob: verify app-ads.txt
-6. Google Search Console: verify domain, submit `sitemap-index.xml`
+4. ~~Domain pockydev.de (INWX): config, DNS (A/AAAA to GitHub Pages, `www` CNAME to `pockydev.github.io`), Enforce HTTPS~~ done (23.10.2026)
+5. ~~Play Console: website and privacy policy URL of both apps~~ done; AdMob: verify `app-ads.txt` (only the Google line; the old host app-ads-txt.com also listed tappx, which the app doesn't use)
+6. ~~Google Search Console: verify domain, submit `sitemap-index.xml`~~ done (24.10.2026)
