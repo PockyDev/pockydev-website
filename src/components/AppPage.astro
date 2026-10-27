@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { type App, playStoreUrl } from '../data/apps';
+import { type App, playStoreUrl, sharedPlayStoreUrl } from '../data/apps';
 import { type Lang, route, ui } from '../data/i18n';
 interface Props { app: App; lang: Lang; description: string; category: string }
 const { app, lang, description, category } = Astro.props;
@@ -26,7 +26,7 @@ const jsonLd = {
         <h1>{app.name}</h1>
         <p class="lead">{app.tagline}</p>
         <ul class="chips">{app.facts.map((f) => <li>{f}</li>)}</ul>
-        <p><a class="btn" href={playStoreUrl(app, lang, 'app_page')}>{t.getOnPlayLong}</a></p>
+        <p><a class="btn" href={playStoreUrl(app, lang, 'app_page')} data-share-href={sharedPlayStoreUrl(app, lang)}>{t.getOnPlayLong}</a></p>
       </div>
     </div>
   </section>
@@ -42,6 +42,12 @@ const jsonLd = {
     <p>{t.appPrivacyText(app.name)} <a href={route(`privacy:${app.slug}`, lang)}>{t.appPrivacyLink}</a>.</p>
     </div>
   </section>
+  <script is:inline>
+    // Opened from a text shared in the app (?ref=share): the store link gets the share referrer
+    if (new URLSearchParams(location.search).get('ref') === 'share') {
+      for (const link of document.querySelectorAll('a[data-share-href]')) link.href = link.dataset.shareHref;
+    }
+  </script>
 </Base>
 
 <style>
