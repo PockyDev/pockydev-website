@@ -21,6 +21,13 @@ export const playStoreUrl = (app: App, lang: Lang, campaign?: string) => {
   return `${url}&referrer=${encodeURIComponent(referrer)}`;
 };
 
+// Store link for visitors who come from a text shared in the app (app page with `?ref=share`),
+// so the Play Console shows installs from shared texts apart from the website's own.
+export const sharedPlayStoreUrl = (app: App, lang: Lang) => {
+  const referrer = `utm_source=${app.slug}_app&utm_medium=share&utm_campaign=app_share`;
+  return `https://play.google.com/store/apps/details?id=${app.packageName}&hl=${lang}&referrer=${encodeURIComponent(referrer)}`;
+};
+
 const appsByLang: Record<Lang, App[]> = {
   de: [
     {
