@@ -1,6 +1,7 @@
 ---
 import AppPage from '../../../components/AppPage.astro';
 import { getApp } from '../../../data/apps';
+import { route } from '../../../data/i18n';
 const app = getApp('phonea', 'de');
 ---
 <AppPage app={app} lang="de" category="UtilitiesApplication" description="Phonea ist eine Buchstabiertafel für Android: jedes Wort sicher buchstabieren am Telefon mit DIN 5009, NATO-Alphabet und mehr. Kostenlos, ohne Werbung, offline.">
@@ -33,4 +34,6 @@ const app = getApp('phonea', 'de');
   <p>Das NATO-Alphabet (Alfa, Bravo, Charlie) ist international und wird in Luftfahrt, Funk und bei Gesprächen auf Englisch genutzt. Für Telefonate auf Deutsch ist die deutsche Buchstabiertafel üblich.</p>
   <h3>Brauche ich Internet?</h3>
   <p>Nein. Alle Buchstabiertafeln sind in der App gespeichert.</p>
+  <h3>Gibt es die Buchstabiertafel auch ohne App?</h3>
+  <p>Ja, auf dieser Seite: Die <a href={route('spelling', 'de')}>Buchstabiertafel online</a> buchstabiert jedes Wort direkt im Browser und zeigt alle Tafeln im Überblick.</p>
 </AppPage>

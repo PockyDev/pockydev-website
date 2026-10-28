@@ -1,0 +1,242 @@
+---
+import Base from '../layouts/Base.astro';
+import { getApp, playStoreUrl } from '../data/apps';
+import { type Lang, route, ui } from '../data/i18n';
+import { spellingAlphabets } from '../data/spelling';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = ui[lang];
+const app = getApp('phonea', lang);
+const text = {
+  de: {
+    title: 'Buchstabiertafel',
+    description: 'Buchstabiertafel online: Wort eingeben und sofort buchstabieren mit DIN 5009:2022 (Aachen, Berlin, Chemnitz), der alten Tafel (Anton, Berta, Cäsar) oder dem NATO-Alphabet. Kostenlos, ohne Anmeldung.',
+    h1: 'Buchstabiertafel online',
+    lead: 'Wort eingeben, Tafel wählen, vorlesen: So buchstabierst du Namen, E-Mail-Adressen und Kundennummern am Telefon ohne Nachfragen.',
+    inputLabel: 'Wort oder Name',
+    placeholder: 'z. B. Meier',
+    alphabetLabel: 'Buchstabiertafel',
+    hint: 'Hier erscheint das buchstabierte Wort.',
+    joiner: 'wie',
+    copy: 'Kopieren',
+    copied: 'Kopiert',
+    localNote: 'Dein Text bleibt in deinem Browser und wird nicht gesendet oder gespeichert.',
+    appHeading: 'Die Buchstabiertafel fürs Handy',
+    appText: 'Mit der kostenlosen App Phonea hast du alle Tafeln auch offline dabei und speicherst Wörter, die du oft brauchst, als Favoriten. Ohne Werbung.',
+    tablesHeading: 'Alle Buchstabiertafeln im Überblick',
+    letter: 'Buchstabe',
+    word: 'Ansagewort',
+    faqHeading: 'Häufige Fragen',
+    faq: [
+      ['Was ist die Buchstabiertafel nach DIN 5009?', 'DIN 5009 ist die deutsche Norm für das Buchstabieren am Telefon. Seit 2022 nutzt sie Städtenamen wie Aachen, Berlin und Chemnitz statt Vornamen wie Anton, Berta und Cäsar. Umlaute buchstabiert man als „Umlaut Aachen“, „Umlaut Offenbach“ und „Umlaut Unna“, das ß als „Eszett“.'],
+      ['Darf ich noch Anton, Berta, Cäsar sagen?', 'Ja. Die Norm ist eine Empfehlung, und die alte Tafel mit Vornamen kennen viele noch. Wichtig ist, dass dein Gegenüber dich versteht.'],
+      ['Wann nehme ich das NATO-Alphabet?', 'Das NATO-Alphabet (Alfa, Bravo, Charlie) ist international und wird in Luftfahrt, Funk und bei Gesprächen auf Englisch genutzt. Am Telefon auf Deutsch ist die deutsche Buchstabiertafel üblich.'],
+      ['Wie buchstabiere ich richtig?', 'Sag Buchstabe und Ansagewort, etwa „M wie München, E wie Essen“, und mach zwischen den Buchstaben eine kurze Pause. Ziffern sagst du einzeln, die Zwei am Telefon gern als „zwo“.'],
+    ],
+  },
+  en: {
+    title: 'Spelling alphabet',
+    description: 'Spelling alphabet online: type a word and spell it with the NATO phonetic alphabet (Alfa, Bravo, Charlie), the German DIN 5009 table and more. Free, no sign-up.',
+    h1: 'Spelling alphabet online',
+    lead: 'Type a word, pick an alphabet, read it out: spell names, e-mail addresses and reference numbers on the phone without being asked twice.',
+    inputLabel: 'Word or name',
+    placeholder: 'e.g. Miller',
+    alphabetLabel: 'Spelling alphabet',
+    hint: 'The spelled word appears here.',
+    joiner: 'as in',
+    copy: 'Copy',
+    copied: 'Copied',
+    localNote: 'Your text stays in your browser; it is not sent or stored.',
+    appHeading: 'The spelling alphabet for your phone',
+    appText: 'With the free Phonea app you have every alphabet with you offline and can save words you need often as favourites. No ads.',
+    tablesHeading: 'All spelling alphabets at a glance',
+    letter: 'Letter',
+    word: 'Code word',
+    faqHeading: 'Quick answers',
+    faq: [
+      ['What is the NATO phonetic alphabet?', 'The NATO phonetic alphabet, also called the ICAO or international radiotelephony spelling alphabet, assigns a clear code word to each letter, from Alfa to Zulu. It is used in aviation, radio and international phone calls so that letters like B and P or M and N are not confused.'],
+      ['Which spelling alphabet should I use?', 'In English and internationally, use the NATO alphabet. For calls in Germany, the DIN 5009 table with city names has been the standard since 2022; many people still know the older table with first names (Anton, Berta, Cäsar).'],
+      ['How do I spell a word clearly?', 'Say the letter and its code word, for example “M as in Mike, I as in India”, and pause briefly between letters. Say digits one by one.'],
+    ],
+  },
+}[lang];
+const defaultId = lang === 'de' ? 'din5009' : 'nato';
+const alphabets = [
+  ...spellingAlphabets.filter((a) => a.id === defaultId),
+  ...spellingAlphabets.filter((a) => a.id !== defaultId),
+];
+const tool = {
+  alphabets: Object.fromEntries(alphabets.map((a) => [a.id, a.letters])),
+  joiner: text.joiner,
+  copied: text.copied,
+};
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  inLanguage: lang,
+  mainEntity: text.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+};
+---
+<Base title={text.title} lang={lang} routeKey="spelling" description={text.description}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(jsonLd)} />
+  <section class="container page">
+    <div class="prose">
+      <h1>{text.h1}</h1>
+      <p class="lead">{text.lead}</p>
+    </div>
+
+    <div class="tool">
+      <div class="fields">
+        <label>
+          <span>{text.inputLabel}</span>
+          <input id="spell-input" type="text" autocomplete="off" placeholder={text.placeholder} maxlength="80" spellcheck="false" autocapitalize="off" />
+        </label>
+        <label>
+          <span>{text.alphabetLabel}</span>
+          <select id="spell-alphabet">
+            {alphabets.map((a) => <option value={a.id}>{a.name[lang]}</option>)}
+          </select>
+        </label>
+      </div>
+      <div class="output" id="spell-output" aria-live="polite">
+        <p class="hint">{text.hint}</p>
+      </div>
+      <div class="tool-foot">
+        <button type="button" class="btn secondary" id="spell-copy" hidden>{text.copy}</button>
+        <p class="local">{text.localNote}</p>
+      </div>
+    </div>
+
+    <aside class="app">
+      <img src={app.icon} alt="" width="72" height="72" loading="lazy" />
+      <div>
+        <h2>{text.appHeading}</h2>
+        <p>{text.appText}</p>
+        <p class="actions">
+          <a class="btn" href={playStoreUrl(app, lang, 'spelling_alphabet')}>{t.getOnPlayLong}</a>
+          <a class="btn secondary" href={route('app:phonea', lang)}>{t.learnMore}</a>
+        </p>
+      </div>
+    </aside>
+
+    <h2>{text.tablesHeading}</h2>
+    <div class="tables">
+      {alphabets.map((a) => (
+        <section class="table" id={a.id}>
+          <h3>{a.name[lang]}</h3>
+          <table>
+            <thead><tr><th scope="col">{text.letter}</th><th scope="col">{text.word}</th></tr></thead>
+            <tbody>{a.letters.map(([letter, word]) => <tr><td>{letter}</td><td>{word}</td></tr>)}</tbody>
+          </table>
+        </section>
+      ))}
+    </div>
+
+    <div class="prose">
+      <h2>{text.faqHeading}</h2>
+      {text.faq.map(([q, a]) => <><h3>{q}</h3><p>{a}</p></>)}
+    </div>
+  </section>
+
+  <script is:inline type="application/json" id="spell-data" set:html={JSON.stringify(tool)} />
+  <script is:inline>
+    // Spells the input locally, like Phonea: known letters get their code word, anything else stays as it is
+    const data = JSON.parse(document.getElementById('spell-data').textContent);
+    const input = document.getElementById('spell-input');
+    const select = document.getElementById('spell-alphabet');
+    const output = document.getElementById('spell-output');
+    const copy = document.getElementById('spell-copy');
+    const hint = output.innerHTML;
+    let lines = [];
+
+    const wordFor = (map, char) => map.get(char) ?? (char.toUpperCase().length === 1 ? map.get(char.toUpperCase()) : undefined);
+
+    const render = () => {
+      const map = new Map(data.alphabets[select.value]);
+      const chars = [...input.value.trim()];
+      lines = [];
+      if (!chars.length) {
+        output.innerHTML = hint;
+        copy.hidden = true;
+        return;
+      }
+      const list = document.createElement('ol');
+      for (const char of chars) {
+        const item = document.createElement('li');
+        if (/\s/.test(char)) {
+          item.className = 'gap';
+          item.setAttribute('aria-hidden', 'true');
+        } else {
+          // Upper case is easier to read (l vs. I); ß has no single upper-case letter
+          const shown = char.toUpperCase().length === 1 ? char.toUpperCase() : char;
+          const word = wordFor(map, char);
+          const letter = document.createElement('b');
+          letter.textContent = shown;
+          item.append(letter, word ? ` ${data.joiner} ${word}` : '');
+          lines.push(word ? `${shown} ${data.joiner} ${word}` : shown);
+        }
+        list.append(item);
+      }
+      output.replaceChildren(list);
+      copy.hidden = !navigator.clipboard;
+      copy.textContent = copy.dataset.label ?? copy.textContent;
+    };
+
+    copy.dataset.label = copy.textContent;
+    copy.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(lines.join(', '));
+        copy.textContent = data.copied;
+      } catch {}
+    });
+    input.addEventListener('input', render);
+    select.addEventListener('change', render);
+    render();
+  </script>
+</Base>
+
+<style>
+  .page { padding-top: 56px; }
+  .lead { font-size: 1.2rem; color: var(--muted); }
+  .tool {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 24px; margin: 28px 0; max-width: 720px;
+  }
+  .fields { display: grid; grid-template-columns: 3fr 2fr; gap: 16px; }
+  @media (max-width: 600px) { .fields { grid-template-columns: 1fr; } }
+  label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 0.95rem; min-width: 0; }
+  input, select {
+    font: inherit; font-weight: 400; color: var(--text); background: var(--bg);
+    border: 1.5px solid var(--border); border-radius: 12px; padding: 0.6em 0.8em; width: 100%;
+  }
+  input { font-size: 1.25rem; }
+  input:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+  .output { display: block; margin-top: 20px; min-height: 3em; }
+  .output :global(ol) { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .output :global(li) {
+    padding: 0.35em 0.8em; border-radius: 999px; font-size: 1.1rem;
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+  }
+  .output :global(li b) { color: var(--accent); }
+  .output :global(li.gap) { flex-basis: 100%; height: 0; padding: 0; background: none; }
+  .hint { color: var(--muted); margin: 0; }
+  .tool-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin-top: 16px; }
+  .tool-foot .btn { font-size: 0.95rem; padding: 0.5em 1em; cursor: pointer; }
+  .local { margin: 0; color: var(--muted); font-size: 0.9rem; }
+  .app {
+    display: flex; gap: 20px; align-items: flex-start; max-width: 720px;
+    border-left: 4px solid var(--corgi); padding: 4px 0 4px 20px;
+  }
+  .app img { border-radius: 16px; flex: none; }
+  .app h2 { margin: 0 0 0.3em; font-size: 1.3rem; }
+  .app p { margin: 0 0 0.8em; }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+  @media (max-width: 480px) { .app { flex-direction: column; } }
+  .tables { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+  .table h3 { margin: 0 0 0.5em; font-size: 1rem; }
+  .table { scroll-margin-top: 80px; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+  th { text-align: left; color: var(--muted); font-weight: 600; font-size: 0.85rem; }
+  th, td { padding: 0.25em 0.5em; border-bottom: 1px solid var(--border); }
+  td:first-child { font-weight: 700; width: 3em; }
+</style>

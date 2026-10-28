@@ -3,7 +3,7 @@ import { url } from '../data/url';
 import Base from '../layouts/Base.astro';
 import AppCard from './AppCard.astro';
 import { getApps } from '../data/apps';
-import type { Lang } from '../data/i18n';
+import { type Lang, route } from '../data/i18n';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const text = {
@@ -14,6 +14,9 @@ const text = {
     cta: 'Zu den Apps',
     apps: 'Meine Apps',
     values: 'Was meine Apps ausmacht',
+    spellingHeading: 'Buchstabiertafel online',
+    spellingText: 'Ein Wort schnell buchstabieren, ohne App? Die Buchstabiertafel hier auf der Seite kann DIN 5009, die alte Tafel mit Anton, Berta, Cäsar und das NATO-Alphabet.',
+    spellingCta: 'Zur Buchstabiertafel',
     items: [
       ['Einfach', 'Eine App, eine Aufgabe. Öffnen, tippen, fertig – ohne Anmeldung und ohne Umwege.'],
       ['Offline', 'Die wichtigsten Funktionen laufen ohne Internet, im Funkloch genauso wie im Keller.'],
@@ -27,6 +30,9 @@ const text = {
     cta: 'See the apps',
     apps: 'My apps',
     values: 'What my apps stand for',
+    spellingHeading: 'Spelling alphabet online',
+    spellingText: 'Need to spell a word quickly, without an app? The spelling tool on this site knows the NATO phonetic alphabet, the German DIN 5009 table and more.',
+    spellingCta: 'Open the spelling alphabet',
     items: [
       ['Simple', 'One app, one job. Open, type, done – no sign-up, no detours.'],
       ['Offline', 'The core features work without internet, in a dead zone just as well as in the basement.'],
@@ -54,6 +60,12 @@ const text = {
     </div>
   </section>
 
+  <section class="container spelling">
+    <h2>{text.spellingHeading}</h2>
+    <p>{text.spellingText}</p>
+    <a class="btn secondary" href={route('spelling', lang)}>{text.spellingCta}</a>
+  </section>
+
   <section class="container values">
     <h2>{text.values}</h2>
     <div class="grid three">
@@ -77,4 +89,5 @@ const text = {
   .values h3 { margin-top: 0; color: var(--corgi); }
   .values p { margin: 0; color: var(--muted); }
   #apps { scroll-margin-top: 80px; }
+  .spelling p { max-width: 640px; color: var(--muted); }
 </style>

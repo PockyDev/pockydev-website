@@ -8,6 +8,7 @@ const other: Lang = lang === 'de' ? 'en' : 'de';
 const path = Astro.url.pathname;
 const nav = [
   { href: `${route('home', lang)}#apps`, label: t.navApps },
+  { href: route('spelling', lang), label: t.navSpelling, wide: true },
   { href: route('about', lang), label: t.navAbout },
 ];
 ---
@@ -19,7 +20,7 @@ const nav = [
     </a>
     <nav aria-label={t.navMain}>
       {nav.map((item) => (
-        <a href={item.href} aria-current={path === item.href ? 'page' : undefined}>{item.label}</a>
+        <a href={item.href} class={item.wide ? 'wide' : undefined} aria-current={path === item.href ? 'page' : undefined}>{item.label}</a>
       ))}
       <a class="lang" href={route(routeKey ?? 'home', other)} hreflang={other} lang={other} title={t.switchTitle}>{t.switchLabel}</a>
     </nav>
@@ -36,8 +37,10 @@ const nav = [
   .bar { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 12px; }
   .brand { display: flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; font-weight: 800; font-size: 1.2rem; }
   nav { display: flex; gap: 20px; align-items: center; }
-  nav a { color: var(--text); text-decoration: none; font-weight: 500; }
+  nav a { color: var(--text); text-decoration: none; font-weight: 500; white-space: nowrap; }
   nav a:hover, nav a[aria-current='page'] { color: var(--accent); }
   .lang { font-size: 0.85rem; padding: 0.2em 0.7em; border: 1.5px solid var(--border); border-radius: 999px; }
+  /* The home page links to the spelling alphabet, so narrow screens can drop it from the bar */
+  @media (max-width: 560px) { .wide { display: none; } }
   @media (max-width: 400px) { nav { gap: 12px; } .brand span { display: none; } }
 </style>
