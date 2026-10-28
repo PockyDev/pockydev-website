@@ -5,6 +5,7 @@
   --teal: #1a9ab8;
   --corgi: #e8a54b;
   --cream: #fff6ea;
+  --brand-dev: #b86e12;
 
   --bg: #fbf8f3;
   --surface: #ffffff;
@@ -27,6 +28,7 @@
     --border: #2f2b5a;
     --accent: #6f8dff;
     --accent-text: #0f0d24;
+    --brand-dev: var(--corgi);
     color-scheme: dark;
   }
 }

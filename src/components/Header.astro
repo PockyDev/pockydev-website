@@ -15,7 +15,7 @@ const nav = [
   <div class="container bar">
     <a class="brand" href={route('home', lang)}>
       <img src={url("/images/corgi-logo.png")} alt="" width="40" height="40" />
-      <span>PockyDev</span>
+      <span>Pocky<span class="dev">Dev</span></span>
     </a>
     <nav aria-label={t.navMain}>
       {nav.map((item) => (
@@ -34,7 +34,8 @@ const nav = [
     border-bottom: 1px solid var(--border);
   }
   .bar { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 12px; }
-  .brand { display: flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; font-weight: 800; font-size: 1.2rem; }
+  .brand { display: flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; font-weight: 800; font-size: 1.4rem; letter-spacing: -0.02em; }
+  .brand .dev { color: var(--brand-dev); }
   nav { display: flex; gap: 20px; align-items: center; }
   nav a { color: var(--text); text-decoration: none; font-weight: 500; }
   nav a:hover, nav a[aria-current='page'] { color: var(--accent); }
