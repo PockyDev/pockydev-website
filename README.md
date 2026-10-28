@@ -19,6 +19,7 @@ The site runs on GitHub Pages under the custom domain https://pockydev.de (`publ
 
 - `src/data/site.ts` – owner, address, e-mail, profile links (TODO placeholders until decided)
 - `src/data/i18n.ts` – languages, the German/English path of every page (`routes`) and shared UI strings
+- `src/data/spelling.ts` – the spelling alphabets for the online spelling tool (`/spelling-alphabet/`), copied from the Phonea app; keep them in sync
 - `src/data/apps.ts` – app texts per language (name, tagline, facts, screenshots) used by home page and app pages
 - `src/pages/` – German pages at the root (home, `apps/<slug>/`, `apps/<slug>/privacy/`, `about-me`, `imprint`, `privacy`, `404`), English pages with the same paths under `src/pages/en/`
 - `public/app-ads.txt` – AdMob seller record for the Kfz Kennzeichen Finder
