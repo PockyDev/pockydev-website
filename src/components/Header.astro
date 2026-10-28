@@ -1,5 +1,4 @@
 ---
-import { url } from '../data/url';
 import { type Lang, type RouteKey, route, ui } from '../data/i18n';
 interface Props { lang: Lang; routeKey?: RouteKey }
 const { lang, routeKey } = Astro.props;
@@ -14,8 +13,7 @@ const nav = [
 <header class="site-header">
   <div class="container bar">
     <a class="brand" href={route('home', lang)}>
-      <img src={url("/images/corgi-logo.png")} alt="" width="40" height="40" />
-      <span>PockyDev</span>
+      Pocky<span class="dev">Dev</span>
     </a>
     <nav aria-label={t.navMain}>
       {nav.map((item) => (
@@ -34,10 +32,11 @@ const nav = [
     border-bottom: 1px solid var(--border);
   }
   .bar { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 12px; }
-  .brand { display: flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; font-weight: 800; font-size: 1.2rem; }
+  .brand { color: var(--text); text-decoration: none; font-weight: 800; font-size: 1.4rem; letter-spacing: -0.02em; }
+  .brand .dev { color: var(--brand-dev); }
   nav { display: flex; gap: 20px; align-items: center; }
   nav a { color: var(--text); text-decoration: none; font-weight: 500; }
   nav a:hover, nav a[aria-current='page'] { color: var(--accent); }
   .lang { font-size: 0.85rem; padding: 0.2em 0.7em; border: 1.5px solid var(--border); border-radius: 999px; }
-  @media (max-width: 400px) { nav { gap: 12px; } .brand span { display: none; } }
+  @media (max-width: 400px) { nav { gap: 12px; } .brand { font-size: 1.2rem; } }
 </style>
