@@ -12,7 +12,7 @@ export const site = {
   cloudflareAnalyticsToken: '811bb051e53c4285be4daaf29f1e2ebd',
   links: {
     github: 'https://github.com/PockyDev',
-    linkedin: 'https://www.linkedin.com/in/tim-pockczerwinski-5a5313250/',
+    linkedin: 'https://www.linkedin.com/in/tim-pockczerwinski/',
     xing: 'https://www.xing.com/profile/Tim_Pockczerwinski',
   },
 };
