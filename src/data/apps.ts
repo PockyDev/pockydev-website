@@ -10,6 +10,12 @@ export interface App {
   teaser: string;
   facts: string[];
   screenshots: { src: string; alt: string }[];
+  // App with its own look on the website (colours and fonts of the app, see src/styles/<theme>.css)
+  theme?: 'phonea';
+  // Share image of the app page; without it the page uses the PockyDev image
+  ogImage?: string;
+  // Promo video on YouTube, loaded only after a click (see VideoPlayer)
+  video?: { youtubeId: string; heading: string; title: string; poster: string };
 }
 
 // With a campaign, the link carries a Play install referrer (UTM), so the Play Console
@@ -50,13 +56,23 @@ const appsByLang: Record<Lang, App[]> = {
       packageName: 'de.pockydev.phonea',
       icon: url('/images/apps/phonea.png'),
       tagline: 'Nie wieder falsch buchstabieren am Telefon',
-      teaser: 'Jedes Wort sicher buchstabieren – mit DIN 5009, NATO-Alphabet und weiteren Buchstabiertafeln. Ohne Werbung.',
-      facts: ['6 Buchstabiertafeln', 'DIN 5009', 'ohne Werbung', 'offline'],
+      teaser: 'Jedes Wort sicher buchstabieren: „P wie Potsdam“ – mit DIN 5009, NATO-Alphabet und weiteren Alphabeten. Ohne Werbung.',
+      facts: ['6 Alphabete', 'DIN 5009', 'ohne Werbung', 'offline'],
       screenshots: [
-        { src: url('/images/screens/phonea-1.webp'), alt: 'Wort eingeben und buchstabieren lassen' },
-        { src: url('/images/screens/phonea-2.webp'), alt: 'Buchstabiertafel auswählen' },
-        { src: url('/images/screens/phonea-3.webp'), alt: 'Übersicht der ganzen Tafel' },
+        { src: url('/images/screens/phonea-1.webp'), alt: 'P wie Potsdam: jeder Buchstabe als Sprechblase' },
+        { src: url('/images/screens/phonea-2.webp'), alt: 'Namen und Nummern als Favoriten merken' },
+        { src: url('/images/screens/phonea-3.webp'), alt: 'Alphabet wählen: DIN 5009, NATO, Frankreich, Italien' },
+        { src: url('/images/screens/phonea-4.webp'), alt: 'Das ganze Alphabet auf einen Blick' },
+        { src: url('/images/screens/phonea-5.webp'), alt: 'Phonea im dunklen Design' },
       ],
+      theme: 'phonea',
+      ogImage: url('/images/og-phonea.jpg'),
+      video: {
+        youtubeId: 'hjoeRLCLhNs',
+        heading: 'Phonea im Video',
+        title: 'Werbevideo zu Phonea',
+        poster: url('/images/phonea-video-poster.webp'),
+      },
     },
   ],
   en: [
@@ -80,13 +96,17 @@ const appsByLang: Record<Lang, App[]> = {
       packageName: 'de.pockydev.phonea',
       icon: url('/images/apps/phonea.png'),
       tagline: 'Never misspell on the phone again',
-      teaser: 'Spell any word clearly – with the NATO phonetic alphabet, the German DIN 5009 table and more. No ads.',
-      facts: ['6 spelling alphabets', 'NATO', 'no ads', 'offline'],
+      teaser: 'Spell any word clearly: “P as in Papa” – with the NATO phonetic alphabet, the German DIN 5009 alphabet and more. No ads.',
+      facts: ['6 alphabets', 'NATO', 'no ads', 'offline'],
       screenshots: [
-        { src: url('/images/screens/phonea-1.webp'), alt: 'Typing a word to spell it (German app screenshot)' },
-        { src: url('/images/screens/phonea-2.webp'), alt: 'Choosing a spelling alphabet (German app screenshot)' },
-        { src: url('/images/screens/phonea-3.webp'), alt: 'Overview of the full table (German app screenshot)' },
+        { src: url('/images/screens/phonea-en-1.webp'), alt: 'P as in Papa: every letter as a speech bubble' },
+        { src: url('/images/screens/phonea-en-2.webp'), alt: 'Keeping names and numbers as favourites' },
+        { src: url('/images/screens/phonea-en-3.webp'), alt: 'Choosing an alphabet: NATO, German, French, Italian' },
+        { src: url('/images/screens/phonea-en-4.webp'), alt: 'The whole alphabet at a glance' },
+        { src: url('/images/screens/phonea-en-5.webp'), alt: 'Phonea in dark mode' },
       ],
+      theme: 'phonea',
+      ogImage: url('/images/og-phonea.jpg'),
     },
   ],
 };

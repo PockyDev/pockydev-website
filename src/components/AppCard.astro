@@ -6,7 +6,7 @@ const { app, lang } = Astro.props;
 const t = ui[lang];
 const page = route(`app:${app.slug}`, lang);
 ---
-<article class="card">
+<article class:list={['card', app.theme && `theme-${app.theme}`]}>
   <div class="head">
     <img src={app.icon} alt="" width="72" height="72" loading="lazy" />
     <div>
@@ -34,5 +34,11 @@ const page = route(`app:${app.slug}`, lang);
   h3 a:hover { color: var(--accent); }
   .tagline { margin: 2px 0 0; color: var(--muted); }
   p { margin: 0; }
+  /* Apps with their own look get a hint of it on the card: their accent colour on top */
+  .theme-phonea { border-top: 4px solid #094a74; }
+  .theme-phonea .chips li { background: color-mix(in srgb, #88baea 30%, transparent); }
+  @media (prefers-color-scheme: dark) {
+    .theme-phonea { border-top-color: #88baea; }
+  }
   .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; padding-top: 6px; }
 </style>

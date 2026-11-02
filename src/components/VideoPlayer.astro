@@ -1,0 +1,51 @@
+---
+import { type Lang, route, ui } from '../data/i18n';
+interface Props { youtubeId: string; title: string; poster: string; lang: Lang }
+const { youtubeId, title, poster, lang } = Astro.props;
+const t = ui[lang];
+---
+<!-- Two clicks: the page shows a local poster; only a click loads the player from
+     youtube-nocookie.com. Without JavaScript the link opens the video on YouTube. -->
+<figure class="video">
+  <a class="poster" href={`https://www.youtube.com/watch?v=${youtubeId}`} data-youtube-id={youtubeId} data-title={title}>
+    <img src={poster} alt="" width="1280" height="720" loading="lazy" />
+    <span class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor" /></svg>{t.videoPlay}</span>
+  </a>
+  <figcaption>{t.videoNote} <a href={`${route('privacy', lang)}#youtube`}>{t.videoNoteLink}</a>.</figcaption>
+</figure>
+<script is:inline>
+  for (const link of document.querySelectorAll('a[data-youtube-id]')) {
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      const frame = document.createElement('iframe');
+      frame.src = `https://www.youtube-nocookie.com/embed/${link.dataset.youtubeId}?autoplay=1&rel=0`;
+      frame.title = link.dataset.title;
+      frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      frame.referrerPolicy = 'strict-origin-when-cross-origin';
+      frame.allowFullscreen = true;
+      link.replaceWith(frame);
+      frame.focus();
+    });
+  }
+</script>
+
+<style>
+  .video { margin: 0; max-width: 720px; }
+  .poster, .video :global(iframe) {
+    display: block; position: relative; width: 100%; aspect-ratio: 16 / 9;
+    border: 0; border-radius: var(--radius); overflow: hidden;
+  }
+  .poster img { width: 100%; height: 100%; object-fit: cover; }
+  /* Sits in the free space below the poster's artwork, at every width */
+  .play {
+    position: absolute; left: 50%; bottom: 4%; transform: translateX(-50%);
+    display: inline-flex; align-items: center; gap: 0.4em; white-space: nowrap;
+    font-size: clamp(0.8rem, 2.6vw, 1rem); line-height: 1.4;
+    padding: 0.5em 1.2em 0.5em 0.9em; border-radius: 999px;
+    background: var(--accent); color: var(--accent-text); font-weight: 600;
+    box-shadow: 0 6px 18px rgb(0 0 0 / 0.3); transition: transform 0.15s ease;
+  }
+  .play svg { width: 1.4em; height: 1.4em; }
+  .poster:hover .play, .poster:focus-visible .play { transform: translateX(-50%) scale(1.05); }
+  figcaption { margin-top: 10px; font-size: 0.9rem; color: var(--muted); }
+</style>

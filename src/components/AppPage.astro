@@ -1,5 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
+import VideoPlayer from './VideoPlayer.astro';
+import '../styles/phonea.css';
+import youngSerif from '../assets/fonts/young-serif.woff2?url';
+import onest from '../assets/fonts/onest.woff2?url';
 import { type App, playStoreUrl, sharedPlayStoreUrl } from '../data/apps';
 import { type Lang, route, ui } from '../data/i18n';
 interface Props { app: App; lang: Lang; description: string; category: string }
@@ -17,8 +21,12 @@ const jsonLd = {
   downloadUrl: playStoreUrl(app, lang),
 };
 ---
-<Base title={app.name} lang={lang} routeKey={`app:${app.slug}`} description={description}>
+<Base title={app.name} lang={lang} routeKey={`app:${app.slug}`} description={description} ogImage={app.ogImage}>
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(jsonLd)} />
+  {app.theme === 'phonea' && [youngSerif, onest].map((font) => (
+    <link rel="preload" href={font} as="font" type="font/woff2" crossorigin="anonymous" slot="head" />
+  ))}
+  <div class:list={[app.theme && `theme-${app.theme}`]}>
   <section class="hero">
     <div class="container intro">
       <img src={app.icon} alt="" width="112" height="112" />
@@ -28,6 +36,7 @@ const jsonLd = {
         <ul class="chips">{app.facts.map((f) => <li>{f}</li>)}</ul>
         <p><a class="btn" href={playStoreUrl(app, lang, 'app_page')} data-share-href={sharedPlayStoreUrl(app, lang)}>{t.getOnPlayLong}</a></p>
       </div>
+      <slot name="hero" />
     </div>
   </section>
   <section class="container">
@@ -35,6 +44,12 @@ const jsonLd = {
       {app.screenshots.map((s) => <li><img src={s.src} alt={s.alt} width="540" height="960" loading="lazy" /></li>)}
     </ul>
   </section>
+  {app.video && (
+    <section class="container">
+      <h2>{app.video.heading}</h2>
+      <VideoPlayer youtubeId={app.video.youtubeId} title={app.video.title} poster={app.video.poster} lang={lang} />
+    </section>
+  )}
   <section class="container">
     <div class="prose">
     <slot />
@@ -42,6 +57,7 @@ const jsonLd = {
     <p>{t.appPrivacyText(app.name)} <a href={route(`privacy:${app.slug}`, lang)}>{t.appPrivacyLink}</a>.</p>
     </div>
   </section>
+  </div>
   <script is:inline>
     // Opened from a text shared in the app (?ref=share): the store link gets the share referrer
     if (new URLSearchParams(location.search).get('ref') === 'share') {
@@ -55,9 +71,11 @@ const jsonLd = {
   .intro { display: flex; gap: 28px; align-items: center; flex-wrap: wrap; }
   .intro img { border-radius: 26px; box-shadow: 0 10px 30px rgb(30 27 75 / 0.18); }
   .intro > div { flex: 1 1 300px; }
+  .intro > :global(.bubbles) { flex: 0 1 auto; }
   h1 { margin-bottom: 0.2em; }
   .lead { font-size: 1.2rem; color: var(--muted); margin: 0 0 14px; }
   .shots { display: flex; gap: 16px; overflow-x: auto; margin: 0; padding: 16px 0 8px; list-style: none; scroll-snap-type: x mandatory; }
-  .shots li { flex: none; margin: 0; scroll-snap-align: start; }
-  .shots img { display: block; width: 220px; border-radius: 20px; border: 1px solid var(--border); }
+  /* Up to 220px wide; more screenshots share the row down to 160px, then the row scrolls */
+  .shots li { flex: 0 1 220px; min-width: 160px; margin: 0; scroll-snap-align: start; }
+  .shots img { display: block; width: 100%; border-radius: 20px; border: 1px solid var(--border); }
 </style>
