@@ -14,8 +14,12 @@ export interface App {
   theme?: 'phonea';
   // Share image of the app page; without it the page uses the PockyDev image
   ogImage?: string;
-  // Promo video on YouTube, loaded only after a click (see VideoPlayer)
-  video?: { youtubeId: string; heading: string; title: string; poster: string };
+  // Promo video on YouTube, loaded only after a click (see VideoPlayer);
+  // `short` is a vertical version that phones in portrait get instead
+  video?: {
+    youtubeId: string; heading: string; title: string; poster: string;
+    short?: { youtubeId: string; poster: string };
+  };
 }
 
 // With a campaign, the link carries a Play install referrer (UTM), so the Play Console
@@ -72,6 +76,7 @@ const appsByLang: Record<Lang, App[]> = {
         heading: 'Phonea im Video',
         title: 'Werbevideo zu Phonea',
         poster: url('/images/phonea-video-poster.webp'),
+        short: { youtubeId: 'yl2xWVRIblM', poster: url('/images/phonea-short-poster.webp') },
       },
     },
   ],
@@ -112,6 +117,7 @@ const appsByLang: Record<Lang, App[]> = {
         heading: 'Phonea in a video',
         title: 'Phonea promo video',
         poster: url('/images/phonea-en-video-poster.webp'),
+        short: { youtubeId: 'BgXtgC3bXcY', poster: url('/images/phonea-en-short-poster.webp') },
       },
     },
   ],

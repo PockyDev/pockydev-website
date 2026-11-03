@@ -21,7 +21,7 @@ The site runs on GitHub Pages under the custom domain https://pockydev.de (`publ
 - `src/data/i18n.ts` – languages, the German/English path of every page (`routes`) and shared UI strings
 - `src/data/apps.ts` – app texts per language (name, tagline, facts, screenshots) used by home page and app pages
 - `src/styles/phonea.css`, `src/assets/fonts/` – Phonea's own look on its app page (app colours, Young Serif and Onest, self-hosted, OFL)
-- `src/components/VideoPlayer.astro` – YouTube video that loads only after a click (local poster first)
+- `src/components/VideoPlayer.astro` – YouTube video that loads only after a click (local poster first; phones in portrait get the vertical Short if there is one)
 - `src/pages/` – German pages at the root (home, `apps/<slug>/`, `apps/<slug>/privacy/`, `about-me`, `imprint`, `privacy`, `404`), English pages with the same paths under `src/pages/en/`
 - `public/app-ads.txt` – AdMob seller record for the Kfz Kennzeichen Finder
 - `.github/workflows/deploy.yml` – builds on push to `main` and deploys to GitHub Pages

@@ -1,14 +1,19 @@
 ---
 import { type Lang, route, ui } from '../data/i18n';
-interface Props { youtubeId: string; title: string; poster: string; lang: Lang }
-const { youtubeId, title, poster, lang } = Astro.props;
+interface Props { youtubeId: string; title: string; poster: string; short?: { youtubeId: string; poster: string }; lang: Lang }
+const { youtubeId, title, poster, short, lang } = Astro.props;
 const t = ui[lang];
+// Phones in portrait get the vertical Short; keep in sync with the media query in the styles
+const portraitPhone = '(max-width: 600px) and (orientation: portrait)';
 ---
 <!-- Two clicks: the page shows a local poster; only a click loads the player from
      youtube-nocookie.com. Without JavaScript the link opens the video on YouTube. -->
-<figure class="video">
-  <a class="poster" href={`https://www.youtube.com/watch?v=${youtubeId}`} data-youtube-id={youtubeId} data-title={title}>
-    <img src={poster} alt="" width="1280" height="720" loading="lazy" />
+<figure class:list={['video', short && 'has-short']}>
+  <a class="poster" href={`https://www.youtube.com/watch?v=${youtubeId}`} data-youtube-id={youtubeId} data-short-id={short?.youtubeId} data-short-media={short && portraitPhone} data-title={title}>
+    <picture>
+      {short && <source media={portraitPhone} srcset={short.poster} width="405" height="720" />}
+      <img src={poster} alt="" width="1280" height="720" loading="lazy" />
+    </picture>
     <span class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor" /></svg><span class="label">{t.videoPlay}</span></span>
   </a>
   <figcaption>{t.videoNote} <a href={`${route('privacy', lang)}#youtube`}>{t.videoNoteLink}</a>.</figcaption>
@@ -18,7 +23,9 @@ const t = ui[lang];
     link.addEventListener('click', (event) => {
       event.preventDefault();
       const frame = document.createElement('iframe');
-      frame.src = `https://www.youtube-nocookie.com/embed/${link.dataset.youtubeId}?autoplay=1&rel=0`;
+      const isShort = link.dataset.shortId && matchMedia(link.dataset.shortMedia).matches;
+      frame.className = isShort ? 'short' : '';
+      frame.src = `https://www.youtube-nocookie.com/embed/${isShort ? link.dataset.shortId : link.dataset.youtubeId}?autoplay=1&rel=0`;
       frame.title = link.dataset.title;
       frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
       frame.referrerPolicy = 'strict-origin-when-cross-origin';
@@ -36,7 +43,13 @@ const t = ui[lang];
     border: 0; border-radius: var(--radius); overflow: hidden;
   }
   .poster { container-type: inline-size; }
+  .poster picture { display: block; height: 100%; }
   .poster img { width: 100%; height: 100%; object-fit: cover; }
+  .video :global(iframe.short) { aspect-ratio: 9 / 16; }
+  @media (max-width: 600px) and (orientation: portrait) {
+    .has-short { max-width: min(100%, calc(80svh * 9 / 16)); }
+    .has-short .poster { aspect-ratio: 9 / 16; }
+  }
   /* Sits in the free space between the thumbnail's text and the phones */
   .play {
     position: absolute; left: 50%; bottom: 4%; transform: translateX(-50%);
