@@ -107,6 +107,12 @@ const appsByLang: Record<Lang, App[]> = {
       ],
       theme: 'phonea',
       ogImage: url('/images/og-phonea.jpg'),
+      video: {
+        youtubeId: '1xXODQne1cc',
+        heading: 'Phonea in a video',
+        title: 'Phonea promo video',
+        poster: url('/images/phonea-video-poster.webp'),
+      },
     },
   ],
 };
