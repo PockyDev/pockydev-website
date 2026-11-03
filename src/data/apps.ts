@@ -111,7 +111,7 @@ const appsByLang: Record<Lang, App[]> = {
         youtubeId: '1xXODQne1cc',
         heading: 'Phonea in a video',
         title: 'Phonea promo video',
-        poster: url('/images/phonea-video-poster.webp'),
+        poster: url('/images/phonea-en-video-poster.webp'),
       },
     },
   ],

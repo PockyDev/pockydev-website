@@ -9,7 +9,7 @@ const t = ui[lang];
 <figure class="video">
   <a class="poster" href={`https://www.youtube.com/watch?v=${youtubeId}`} data-youtube-id={youtubeId} data-title={title}>
     <img src={poster} alt="" width="1280" height="720" loading="lazy" />
-    <span class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor" /></svg>{t.videoPlay}</span>
+    <span class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor" /></svg><span class="label">{t.videoPlay}</span></span>
   </a>
   <figcaption>{t.videoNote} <a href={`${route('privacy', lang)}#youtube`}>{t.videoNoteLink}</a>.</figcaption>
 </figure>
@@ -35,8 +35,9 @@ const t = ui[lang];
     display: block; position: relative; width: 100%; aspect-ratio: 16 / 9;
     border: 0; border-radius: var(--radius); overflow: hidden;
   }
+  .poster { container-type: inline-size; }
   .poster img { width: 100%; height: 100%; object-fit: cover; }
-  /* Sits in the free space below the poster's artwork, at every width */
+  /* Sits in the free space between the thumbnail's text and the phones */
   .play {
     position: absolute; left: 50%; bottom: 4%; transform: translateX(-50%);
     display: inline-flex; align-items: center; gap: 0.4em; white-space: nowrap;
@@ -47,5 +48,11 @@ const t = ui[lang];
   }
   .play svg { width: 1.4em; height: 1.4em; }
   .poster:hover .play, .poster:focus-visible .play { transform: translateX(-50%) scale(1.05); }
+  /* On small posters the label would cover the artwork: show the icon only, keep the label for screen readers */
+  @container (max-width: 520px) {
+    .play { padding: 0.6em; }
+    .play svg { width: 1.6em; height: 1.6em; }
+    .label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  }
   figcaption { margin-top: 10px; font-size: 0.9rem; color: var(--muted); }
 </style>
