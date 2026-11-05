@@ -12,6 +12,8 @@ interface Props {
   // Page key for the language switcher and hreflang links; omit for pages without a translation
   routeKey?: RouteKey;
   description?: string;
+  // Root-relative share image built with url(); defaults to the PockyDev image
+  ogImage?: string;
   noindex?: boolean;
 }
 
@@ -20,7 +22,7 @@ const t = ui[lang];
 const description = Astro.props.description ?? t.defaultDescription;
 const fullTitle = routeKey === 'home' ? t.homeTitle : `${title} | PockyDev`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
-const ogImage = new URL(url('/images/og-image.jpg'), Astro.site);
+const ogImage = new URL(Astro.props.ogImage ?? url('/images/og-image.jpg'), Astro.site);
 const alternates = routeKey
   ? (['de', 'en'] as const).map((l) => ({ lang: l, href: new URL(route(routeKey, l), Astro.site) }))
   : [];

@@ -1,16 +1,27 @@
 ---
 import AppPage from '../../../../components/AppPage.astro';
+import SpeechBubbles from '../../../../components/SpeechBubbles.astro';
 import { getApp } from '../../../../data/apps';
 const app = getApp('phonea', 'en');
 ---
 <AppPage app={app} lang="en" category="UtilitiesApplication" description="Phonea turns any word into its spelling alphabet sequence – NATO phonetic alphabet, German DIN 5009 and more. Free, no ads, works offline. For Android.">
-  <p>Never misspell on the phone again! Phonea turns any word into its spelling alphabet sequence – with the NATO phonetic alphabet, the German spelling table (DIN 5009) or the French and Italian tables.</p>
+  <SpeechBubbles slot="hero" lang="en" />
+  <p>Never misspell on the phone again! Phonea is the phonetic alphabet for phone calls: type a word and every letter appears as a speech bubble – “P as in Papa”. With the NATO phonetic alphabet, the German alphabet (DIN 5009) or the French and Italian alphabets.</p>
   <p>Sound familiar? “Was that with an M or an N?” With Phonea you just read it out: Mike, India, Lima, Lima, Echo, Romeo.</p>
+
+  <h2>New in version 1.5</h2>
+  <ul>
+    <li>A new look: every letter appears as a speech bubble.</li>
+    <li>New app icon and Phonea's own colours. If you like, Phonea uses the colours of your wallpaper.</li>
+    <li>Remove favourites by swiping them aside, with Undo.</li>
+    <li>The alphabets are shown in two columns, each with a short description.</li>
+    <li>Easier to read with large text, and smoother animations.</li>
+  </ul>
 
   <h2>Spelling alphabets in Phonea</h2>
   <ul>
     <li><strong>NATO phonetic alphabet</strong> (ICAO) – Alfa, Bravo, Charlie …</li>
-    <li><strong>Germany, DIN 5009:2022</strong> – the current German table with city names (Aachen, Berlin, Chemnitz …)</li>
+    <li><strong>Germany, DIN 5009:2022</strong> – the current German alphabet with city names (Aachen, Berlin, Chemnitz …)</li>
     <li><strong>Germany until 2022</strong> – Anton, Berta, Cäsar …</li>
     <li><strong>Germany until 1934</strong> – Albert, Bernhard, Cäsar …</li>
     <li><strong>France</strong> – Anatole, Berthe, Célestine …</li>
@@ -21,9 +32,9 @@ const app = getApp('phonea', 'en');
   <h2>What Phonea does</h2>
   <ul>
     <li>Spell any word, including German umlauts and ß</li>
-    <li>Show the full spelling alphabet as an overview</li>
-    <li>Save frequently used words as favourites</li>
-    <li>Light or dark mode, as you like</li>
+    <li>Show the whole alphabet at a glance</li>
+    <li>Keep frequently used names and numbers as favourites</li>
+    <li>Light, dark or in your colours</li>
   </ul>
 
   <h2>What Phonea doesn't do</h2>
@@ -38,5 +49,5 @@ const app = getApp('phonea', 'en');
   <h3>What is the NATO phonetic alphabet?</h3>
   <p>The NATO phonetic alphabet, also called the ICAO or international radiotelephony spelling alphabet, assigns a clear code word to each letter, from Alfa to Zulu. It is used in aviation, radio and international phone calls so that letters like B and P or M and N are not confused.</p>
   <h3>Which spelling alphabet should I use?</h3>
-  <p>In English and internationally, use the NATO alphabet. For calls in Germany, the DIN 5009 table with city names has been the standard since 2022; many people still know the older table with first names.</p>
+  <p>In English and internationally, use the NATO alphabet. For calls in Germany, the DIN 5009 alphabet with city names has been the standard since 2022; many people still know the older one with first names.</p>
 </AppPage>

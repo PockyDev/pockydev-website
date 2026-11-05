@@ -1,0 +1,46 @@
+---
+import type { Lang } from '../data/i18n';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+// "Phonea" spelled as in the app and its store screenshots: DIN 5009 in German, NATO in English
+const example = {
+  de: { connector: 'wie', words: ['Potsdam', 'Hamburg', 'Offenbach', 'Nürnberg', 'Essen', 'Aachen'] },
+  en: { connector: 'as in', words: ['Papa', 'Hotel', 'Oscar', 'November', 'Echo', 'Alfa'] },
+}[lang];
+const letters = [...'Phonea'];
+---
+<ol class="bubbles">
+  {letters.map((letter, i) => (
+    <li><span class="letter">{letter}</span> <span class="connector">{example.connector}</span> <span class="word">{example.words[i]}</span></li>
+  ))}
+</ol>
+
+<style>
+  /* Speech bubbles as in the app: white bubble, sharp corner bottom start */
+  .bubbles { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; margin: 0; padding: 0; list-style: none; }
+  li {
+    display: inline-flex; align-items: baseline; gap: 0.45em;
+    padding: 0.3em 0.95em 0.35em; border-radius: 16px 16px 16px 4px;
+    background: #ffffff; color: var(--phonea-ink); line-height: 1.2;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 0.12);
+    transform-origin: bottom left;
+    animation: pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+  .letter { font-family: var(--phonea-serif); font-size: 1.55rem; color: var(--phonea-blue); }
+  .connector { font-size: 0.85rem; color: var(--phonea-connector); }
+  .word { font-family: var(--phonea-serif); font-size: 1.35rem; }
+  li:nth-child(2) { animation-delay: 0.09s; }
+  li:nth-child(3) { animation-delay: 0.18s; }
+  li:nth-child(4) { animation-delay: 0.27s; }
+  li:nth-child(5) { animation-delay: 0.36s; }
+  li:nth-child(6) { animation-delay: 0.45s; }
+  @keyframes pop { from { opacity: 0; transform: scale(0.6); } }
+  @media (prefers-reduced-motion: reduce) { li { animation: none; } }
+  /* On phones the bubbles flow in rows, so the hero stays short */
+  @media (max-width: 600px) {
+    .bubbles { flex-flow: row wrap; gap: 6px; }
+    .letter { font-size: 1.2rem; }
+    .word { font-size: 1.05rem; }
+    .connector { font-size: 0.75rem; }
+  }
+</style>

@@ -1,0 +1,88 @@
+/* Phonea's own look on its app page: colours from the app's Material 3 scheme (seed #094A74),
+   Young Serif for headings and spelled words, Onest for text. The fonts are self-hosted
+   (OFL, licences next to the files) and subset to Latin. Header and footer stay PockyDev. */
+
+@font-face {
+  font-family: 'Young Serif';
+  src: url('../assets/fonts/young-serif.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Onest';
+  src: url('../assets/fonts/onest.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+.theme-phonea {
+  --phonea-blue: #094a74;
+  --phonea-sky: #88baea;
+  --phonea-sky-light: #cee5ff;
+  --phonea-ink: #191c1f;
+  --phonea-connector: #41474e;
+  --phonea-serif: 'Young Serif', Georgia, 'Times New Roman', serif;
+
+  --bg: #edeef2;
+  --surface: #ffffff;
+  --text: #191c1f;
+  --muted: #41474e;
+  --border: #c1c7cf;
+  --heading: var(--phonea-blue);
+  --accent: #2d628d;
+  --accent-text: #ffffff;
+
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Onest', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  padding-bottom: 48px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .theme-phonea {
+    --bg: #111416;
+    --surface: #1d2023;
+    --text: #e2e2e6;
+    --muted: #c1c7cf;
+    --border: #41474e;
+    --heading: #9acbfc;
+    --accent: #9acbfc;
+    --accent-text: #003353;
+  }
+}
+
+.theme-phonea :is(h1, h2, h3) {
+  font-family: var(--phonea-serif);
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--heading);
+}
+
+.theme-phonea .btn:hover { box-shadow: 0 6px 18px rgb(9 74 116 / 0.25); }
+
+.theme-phonea .chips li { background: color-mix(in srgb, var(--phonea-sky) 30%, transparent); }
+
+.theme-phonea .note {
+  border-left-color: var(--phonea-sky);
+  background: color-mix(in srgb, var(--phonea-sky) 16%, var(--surface));
+}
+
+/* Hero in Phonea blue, as the app's splash screen, in light and dark mode */
+.theme-phonea .hero {
+  --heading: #ffffff;
+  background: var(--phonea-blue);
+  color: #ffffff;
+  margin-bottom: 8px;
+  padding-bottom: 56px;
+}
+.theme-phonea .hero .lead { color: var(--phonea-sky-light); }
+.theme-phonea .hero .chips li { background: rgb(255 255 255 / 0.14); color: #ffffff; }
+.theme-phonea .hero .btn { background: #ffffff; color: var(--phonea-blue); }
+.theme-phonea .hero .btn:hover { box-shadow: 0 6px 18px rgb(0 0 0 / 0.3); }
+/* The icon has the hero's blue: a light ring keeps its outline */
+.theme-phonea .hero .intro > img:first-child { box-shadow: 0 0 0 1px rgb(255 255 255 / 0.25), 0 10px 30px rgb(0 0 0 / 0.3); }
+
+.theme-phonea .video .play { background: #ffffff; color: var(--phonea-blue); }
