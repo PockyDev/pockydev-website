@@ -5,24 +5,35 @@ import RightsSection from '../../../../../components/RightsSection.astro';
 <Base title="Privacy policy License Plate Finder" lang="en" routeKey="privacy:kfz-kennzeichen-finder" description="Privacy policy of the app License Plate Finder (Kfz Kennzeichen Finder)">
   <section class="container prose page">
     <h1>Privacy policy License Plate Finder</h1>
-    <p class="note">Last updated: October 2026 (app version 1.18). The German version is legally binding.</p>
+    <p class="note">Last updated: November 2026 (app version 1.20). The German version is legally binding.</p>
 
     <h2>In short</h2>
-    <p>License Plate Finder needs no account. The search runs offline on your device. The app is funded by ads from Google AdMob; before showing them it asks whether personalised ads are allowed. For usage statistics and crash reports the app uses Firebase. The map and the Wikipedia summary on the detail page load data from Google and Wikipedia.</p>
+    <p>License Plate Finder needs no account. The search runs offline on your device. The app is funded by ads from Google AdMob; before showing them it asks whether personalised ads are allowed. You can unlock locked countries for 24 hours by watching an ad video. The one-time purchase “Remove ads” is handled by Google Play; the app only learns whether you bought it. For usage statistics and crash reports the app uses Firebase. The map and the Wikipedia summary on the detail page load data from Google and Wikipedia.</p>
 
     <RightsSection lang="en">
       <h2>Data on your device</h2>
-      <p>The registration code data is part of the app, and the search runs on your device. Settings (e.g. country and theme) are only stored locally.</p>
+      <p>The registration code data is part of the app, and the search runs on your device. The app also stores the following only locally on your device:</p>
+      <ul>
+        <li>settings, e.g. the selected country and the theme</li>
+        <li>which countries you have unlocked and until when</li>
+        <li>a random number created when the app is installed, which decides which extra country is free on which day</li>
+        <li>whether you bought “Remove ads”, so the app knows even without a connection to Google Play</li>
+      </ul>
+      <p>The app derives your home country from your device's language and region setting; nothing is sent for this. If you uninstall the app or clear its data, this information is gone. You can restore a purchase in the app afterwards.</p>
 
       <h2>Consent (Google User Messaging Platform)</h2>
-      <p>On launch the app shows a consent dialog from the Google User Messaging Platform (UMP). There you decide whether personalised ads are allowed. Your choice is stored on the device and can be changed in the app at any time.</p>
+      <p>On launch the app shows a consent dialog from the Google User Messaging Platform (UMP). There you decide whether personalised ads are allowed. Your choice is stored on the device and can be changed in the app at any time. If you bought “Remove ads”, the app starts neither the consent dialog nor Google AdMob.</p>
 
       <h2>Ads with Google AdMob</h2>
-      <p>The app shows ads via Google AdMob by Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland. This processes, among other things, your device's advertising ID, IP address, device data and information about ad impressions and clicks. Personalised ads are only shown with your consent (Art. 6 (1) (a) GDPR); without consent, non-personalised ads are served. You can reset or delete the advertising ID in your Android settings. More: <a href="https://policies.google.com/technologies/ads">How Google uses data for advertising</a>.</p>
+      <p>The app shows ads via Google AdMob by Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland. This processes, among other things, your device's advertising ID, IP address, device data and information about ad impressions and clicks. Personalised ads are only shown with your consent (Art. 6 (1) (a) GDPR); without consent, non-personalised ads are served. You can reset or delete the advertising ID in your Android settings.</p>
+      <p>If you tap “Watch a short video” on a locked country, the app loads a rewarded video ad from Google AdMob. This processes the same data as the other ads, under the same consent rules. Once you have watched the video to the end, the country is free for 24 hours; the app stores this only on your device. Videos are only shown when you ask for one. More: <a href="https://policies.google.com/technologies/ads">How Google uses data for advertising</a>.</p>
+
+      <h2>Purchase “Remove ads” (Google Play Billing)</h2>
+      <p>In the app you can buy “Remove ads” once (€2.49 in Germany, no subscription). The purchase unlocks all countries and removes the ads. Purchase and payment are handled entirely by Google Play (Google Ireland Limited) under Google's terms and the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>. I never see your payment details. Using the Google Play Billing Library, the app checks whether a purchase exists and confirms it to Google Play. For this it receives the purchase status and a purchase token from Google Play; only whether the purchase exists is stored on your device. The legal basis is Art. 6 (1) (b) GDPR (performance of the purchase contract).</p>
 
       <h2>Firebase Analytics, Crashlytics and Remote Config</h2>
-      <p>The app uses Firebase Analytics (usage statistics) and Firebase Crashlytics (crash reports). Both are active as soon as you use the app. They process, for example, a random app instance ID, device model, Android version, app version, approximate region and usage or crash information. Usage information includes the screens you open, the results you tap and the search terms you enter (registration codes or place names), so I can see what people look for and what is not found. The data helps me find bugs and improve the app. The legal basis is Art. 6 (1) (f) GDPR (legitimate interest: a stable and improved app). You can switch both off at any time in the app's settings, and you can also object to the processing by e-mail.</p>
-      <p>Firebase Remote Config loads settings for the app (e.g. when the app asks for a rating) from Google servers. This processes technically necessary data such as your IP address and app instance ID (Art. 6 (1) (f) GDPR; the legitimate interest is running the app reliably). More: <a href="https://firebase.google.com/support/privacy">Privacy and security in Firebase</a>.</p>
+      <p>The app uses Firebase Analytics (usage statistics) and Firebase Crashlytics (crash reports). Both are active as soon as you use the app. They process, for example, a random app instance ID, device model, Android version, app version, approximate region and usage or crash information. Usage information includes the screens you open, the results you tap and the search terms you enter (registration codes or place names), so I can see what people look for and what is not found. The app also records which countries are unlocked (by video or purchase) and how a purchase attempt ends (e.g. completed or cancelled) – without any payment details. The data helps me find bugs and improve the app. The legal basis is Art. 6 (1) (f) GDPR (legitimate interest: a stable and improved app). You can switch both off at any time in the app's settings, and you can also object to the processing by e-mail.</p>
+      <p>Firebase Remote Config loads settings for the app from Google servers, e.g. when the app asks for a rating or whether a video unlocks one country or all of them (so I can test which variant works better). This processes technically necessary data such as your IP address and app instance ID (Art. 6 (1) (f) GDPR; the legitimate interest is running the app reliably). More: <a href="https://firebase.google.com/support/privacy">Privacy and security in Firebase</a>.</p>
 
       <h2>Map (Google Maps)</h2>
       <p>The detail page shows a map from the Google Maps SDK for Android. When the map loads, your IP address and the map area shown are sent to Google. If no position is stored for a place, the app looks it up with your Android device's geocoder service (usually provided by Google), which sends the place name. The app does not use your location. The legal basis is Art. 6 (1) (f) GDPR (legitimate interest: showing where the place is). More: <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.</p>

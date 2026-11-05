@@ -3,21 +3,35 @@ import AppPage from '../../../components/AppPage.astro';
 import { getApp } from '../../../data/apps';
 const app = getApp('kfz-kennzeichen-finder', 'de');
 ---
-<AppPage app={app} lang="de" category="TravelApplication" description="Kfz Kennzeichen Finder: Woher kommt das Auto? Über 900 Kfz-Kennzeichen aus Deutschland, Österreich und der Schweiz – mit Karte, Wikipedia-Info und offline nutzbar. Kostenlos für Android.">
-  <p>Woher stammt das Kennzeichen KF? Was bedeutet NWM? Und welcher Kanton steckt hinter GE? Mit dem Kfz Kennzeichen Finder siehst du sofort, aus welcher Stadt, welchem Landkreis oder welchem Kanton ein Auto kommt – für Deutschland, Österreich und die Schweiz in einer App.</p>
+<AppPage app={app} lang="de" category="TravelApplication" description="Kfz Kennzeichen Finder: Woher kommt das Auto? Über 1.300 Kfz-Kennzeichen aus Deutschland, Österreich, der Schweiz, Polen, Tschechien und Kroatien – mit Karte, Wikipedia-Info und offline nutzbar. Kostenlos für Android.">
+  <p>Woher stammt das Kennzeichen KF? Was bedeutet NWM? Und welcher Kanton steckt hinter GE? Mit dem Kfz Kennzeichen Finder siehst du sofort, aus welcher Stadt, welchem Landkreis oder welcher Region ein Auto kommt – für Deutschland, Österreich, die Schweiz, Polen, Tschechien und Kroatien in einer App.</p>
+  <p>Einfach das Kürzel eintippen, schon erscheint der Ort mit Bundesland, Bezirk, Kanton oder Region. Ideal für die Autofahrt, den Urlaub oder das Kennzeichen-Raten mit Kindern.</p>
 
-  <h2>Über 900 Kennzeichen</h2>
+  <h2>Über 1.300 Kennzeichen aus sechs Ländern</h2>
   <ul>
     <li><strong>771 Kürzel aus Deutschland</strong>, inklusive wieder eingeführter Altkennzeichen wie AIB (Bad Aibling) oder WAT (Wattenscheid)</li>
     <li><strong>106 Bezirkskennzeichen aus Österreich</strong>, z. B. W (Wien), G (Graz), KB (Kitzbühel)</li>
     <li><strong>26 Kantonskürzel aus der Schweiz</strong>, z. B. ZH (Zürich), BE (Bern), GE (Genf)</li>
+    <li><strong>Neu: 427 Kürzel aus Polen</strong>, z. B. WA (Warschau), KR (Krakau), DW (Breslau)</li>
+    <li><strong>Neu: 14 Regionsbuchstaben aus Tschechien</strong>, z. B. A (Prag), B (Brünn), P (Pilsen)</li>
+    <li><strong>Neu: alle Städtekürzel aus Kroatien</strong>, z. B. ZG (Zagreb), ST (Split), RI (Rijeka)</li>
   </ul>
 
   <h2>Detailseite zu jedem Kennzeichen</h2>
   <ul>
     <li>Karte mit der Lage des Ortes</li>
     <li>Kurzinfo aus Wikipedia in deiner Sprache, mit Link zum ganzen Artikel</li>
-    <li>Ortsnamen vorlesen lassen – in der Sprache des Ortes</li>
+    <li>Neu: Orte und Regionen in deiner Sprache – Prag statt Praha, Genf statt Genève</li>
+    <li>Ortsnamen vorlesen lassen – in der Sprache des Ortes, also Genève auf Französisch und Praha auf Tschechisch</li>
+  </ul>
+
+  <h2>Schnell und einfach</h2>
+  <ul>
+    <li>Suche funktioniert ohne Internet</li>
+    <li>Alphabetische Liste aller Kennzeichen mit Ortssuche – findet auch den Originalnamen</li>
+    <li>Land mit einem Tipp wechseln</li>
+    <li>Heller und dunkler Modus</li>
+    <li>Auf Deutsch, Englisch, Französisch, Italienisch, Polnisch, Tschechisch und Kroatisch</li>
   </ul>
 
   <h2>Beispiele</h2>
@@ -25,9 +39,9 @@ const app = getApp('kfz-kennzeichen-finder', 'de');
     <li>HH → Hansestadt Hamburg</li>
     <li>M → München</li>
     <li>KF → Kaufbeuren (Bayern)</li>
-    <li>NWM → Nordwestmecklenburg (Mecklenburg-Vorpommern)</li>
     <li>W → Wien</li>
     <li>GE → Genf</li>
+    <li>WA → Warschau</li>
   </ul>
 
   <h2>Häufige Fragen</h2>
@@ -35,8 +49,8 @@ const app = getApp('kfz-kennzeichen-finder', 'de');
   <p>Ja. Die Suche und die Liste aller Kennzeichen funktionieren ohne Internet. Nur die Karte und die Wikipedia-Infos auf der Detailseite brauchen eine Verbindung.</p>
   <h3>Sind auch alte Kennzeichen dabei?</h3>
   <p>Ja, die wieder eingeführten Altkennzeichen aus Deutschland sind enthalten, zum Beispiel AIB (Bad Aibling), WOR (Wolfratshausen) oder SOG (Schongau).</p>
-  <h3>Woher stammen die Daten?</h3>
-  <p>Aus den Wikipedia-Listen der Kfz-Kennzeichen für Deutschland, Österreich und die Schweiz. Die Daten werden regelmäßig geprüft und aktualisiert, zuletzt im Oktober 2026.</p>
   <h3>Was kostet die App?</h3>
-  <p>Nichts. Die App ist kostenlos und finanziert sich über Werbung.</p>
+  <p>Die App ist kostenlos und finanziert sich über Werbung. Dein Heimatland ist immer frei, dazu jeden Tag ein weiteres Land. Die übrigen Länder schaltest du per kurzem Video für 24 Stunden frei oder dauerhaft per Einmalkauf „Werbung entfernen“ (2,49 €) – ohne Abo. Der Kauf schaltet alle Länder frei und entfernt auch die Werbung.</p>
+  <h3>Woher stammen die Daten?</h3>
+  <p>Aus den Wikipedia-Listen der Kfz-Kennzeichen der sechs Länder. Die Daten werden regelmäßig geprüft und aktualisiert, zuletzt im November 2026.</p>
 </AppPage>
