@@ -1,0 +1,50 @@
+/* Putzpfote's own look on its landing page: the colours of the app's child mode
+   (PockyDev/ToothbrushTimer .context/design.md "Colours"), warm cream in light mode and
+   PockyDev night blue in dark mode. System font until the app's font is decided.
+   Header and footer stay PockyDev. */
+
+.theme-putzpfote {
+  --bg: #fff8f1;
+  --surface: #ffffff;
+  --text: #241a10;
+  --muted: #5c4e40;
+  --border: #efe4d6;
+  --heading: #9a5a1c;
+  --accent: #2457d6;
+  --accent-text: #ffffff;
+  --pp-stage: #fbe7cf;
+  --pp-shadow: rgb(90 50 10 / 0.16);
+  --pp-badge-bg: #fbe0b8;
+  --pp-badge-text: #5a3a0a;
+  --pp-frame: #ebd3b2;
+
+  background: var(--bg);
+  color: var(--text);
+  padding-bottom: 48px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .theme-putzpfote {
+    --bg: #14122e;
+    --surface: #2a2752;
+    --text: #f3f1fb;
+    --muted: #b4b0cc;
+    --border: #3a3670;
+    --heading: #e8a54b;
+    --accent: #b4c5ff;
+    --accent-text: #0b2a7a;
+    --pp-stage: #1f1c45;
+    --pp-shadow: rgb(0 0 0 / 0.45);
+    --pp-badge-bg: #4d3a1e;
+    --pp-badge-text: #ffddb0;
+    --pp-frame: #3a3670;
+  }
+}
+
+.theme-putzpfote :is(h1, h2, h3) { color: var(--heading); }
+.theme-putzpfote .btn:hover { box-shadow: 0 6px 18px rgb(36 87 214 / 0.25); }
+.theme-putzpfote .chips li { background: color-mix(in srgb, #e8a54b 18%, transparent); }
+.theme-putzpfote .note {
+  border-left-color: #e8a54b;
+  background: color-mix(in srgb, #e8a54b 12%, var(--surface));
+}

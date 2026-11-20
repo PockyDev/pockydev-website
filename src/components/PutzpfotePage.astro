@@ -1,0 +1,146 @@
+---
+// Landing page of Putzpfote / BrushPaw before its release ("coming soon").
+// Wording checked with legal (2026-11-20): no "free", no health claims, privacy claims only
+// about the app, nothing said by Pino to the child, no features that aren't built yet.
+// No JSON-LD until the app is on Google Play (it would announce an offer and a price).
+import Base from '../layouts/Base.astro';
+import PinoBrushing from './PinoBrushing.astro';
+import '../styles/putzpfote.css';
+import { url } from '../data/url';
+import { getTeaser } from '../data/teasers';
+import type { Lang } from '../data/i18n';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const app = getTeaser('putzpfote', lang);
+const text = {
+  de: {
+    title: 'Putzpfote – Zahnputz-Timer für Kinder',
+    description: 'Putzpfote ist ein Zahnputz-Timer für Kinder von 2 bis 6: Der Corgi Pino putzt mit, Eltern stellen alles ein. Ohne Werbung, offline. Bald für Android.',
+    intro: 'Kleine Kinder können noch keine Uhr lesen, und zwei Minuten fühlen sich für sie lang an. In Putzpfote putzt der Corgi Pino einfach mit, und dein Kind sieht auch ohne Zahlen, wie lange es noch dauert. Wie lange geputzt wird und was dein Kind auswählen darf, legst du im Elternbereich fest.',
+    featuresHeading: 'Was Putzpfote kann',
+    features: [
+      ['Dein Kind wählt den Timer', 'Pino beim Zähneputzen, ein Pfotenkreis, eine Sanduhr oder eine Uhr mit Zahlen, dazu eine kleine Anzeige am Rand. Zur Auswahl steht nur, was du erlaubst.'],
+      ['Putzzeit nach Wunsch', 'Von 30 Sekunden bis 5 Minuten, voreingestellt sind 2 Minuten. Am Ende kommen ein Ton, eine Vibration und ein Lob von Pino.'],
+      ['Für mehrere Kinder', 'Jedes Kind hat ein eigenes Profil mit Zeichen, Putzzeit und Anzeigen. Bei „Wer putzt?“ tippt es einfach auf sein Zeichen.'],
+      ['Einstellungen nur für Eltern', 'Der Elternbereich ist durch eine Rechenaufgabe oder deine PIN geschützt. Im Kindermodus gibt es keine Käufe und keine Links.'],
+      ['Eltern putzen nach, wenn du willst', 'Auf Wunsch übergibt Pino nach dem Lob an dich, und du putzt mit eigenem Timer nach. Diese Funktion ist anfangs ausgeschaltet.'],
+      ['Hell, dunkel oder abends dunkel', 'Im Hoch- und Querformat, auf Handys und Tablets.'],
+    ],
+    displaysHeading: 'Vier Anzeigen zur Wahl',
+    displays: [
+      ['pino', 'Pino putzt mit', 'Pino putzt sich die Zähne, ein Ring um ihn zeigt die verbleibende Zeit'],
+      ['paws', 'Pfotenkreis', 'Ein Kreis aus Pfoten um einen Zahn, die Pfoten füllen sich nach und nach'],
+      ['hourglass', 'Sanduhr', 'Eine Sanduhr, deren Sand nach unten rieselt'],
+      ['clock', 'Uhr mit Zahlen', 'Eine Uhr mit der restlichen Zeit in Zahlen und einem blauen Ring'],
+    ],
+    trustHeading: 'Für Eltern gemacht',
+    trust: [
+      'Die App zeigt keine Werbung und kommt ohne Tracking, Analyse- oder Absturz-Tools aus. Sie braucht kein Konto und funktioniert ohne Internet. Namen und Einstellungen deiner Kinder bleiben auf dem Gerät.',
+      'Geplant sind die Grundfunktionen ohne Kauf und alles Weitere mit einem einmaligen Kauf in der App, den Google Play abwickelt. Ein Abo gibt es nicht.',
+      'Putzpfote hilft bei der täglichen Putzroutine und ersetzt keine zahnärztliche Beratung.',
+    ],
+    note: 'Putzpfote ist noch in Entwicklung. Funktionen und Aussehen können sich bis zum Start noch ändern. Die Bilder zeigen den Stand vom November 2026.',
+  },
+  en: {
+    title: 'BrushPaw – Toothbrush Timer for Kids',
+    description: 'BrushPaw is a toothbrush timer for kids aged 2 to 6: Pino the corgi brushes along, parents set everything up. No ads, offline. Coming soon to Android.',
+    intro: "Little children can't read a clock yet, and two minutes can feel like a long time. In BrushPaw, Pino the corgi simply brushes along, so your child can see how much time is left without reading numbers. You decide in the parent area how long brushing takes and what your child can choose.",
+    featuresHeading: 'What BrushPaw does',
+    features: [
+      ['Your child picks the timer', 'Pino brushing his teeth, a circle of paws, an hourglass or a clock with numbers, plus a small display at the edge. Your child only sees the options you allow.'],
+      ['Brushing time your way', "From 30 seconds to 5 minutes, 2 minutes by default. At the end there's a chime, a vibration and praise from Pino."],
+      ['For several children', "Each child has their own profile with a sign, brushing time and displays. On “Who's brushing?” they just tap their sign."],
+      ['Settings for parents only', 'The parent area is protected by a sum or your PIN. Child mode has no purchases and no links.'],
+      ['Parents brush after, if you like', "If you turn it on, Pino hands over to you after the praise, and you brush again with your own timer. It's off until you switch it on."],
+      ['Light, dark or dark in the evening', 'In portrait and landscape, on phones and tablets.'],
+    ],
+    displaysHeading: 'Four displays to choose from',
+    displays: [
+      ['pino', 'Pino brushes along', 'Pino brushing his teeth, a ring around him shows the time left'],
+      ['paws', 'Circle of paws', 'A circle of paws around a tooth, the paws fill up one by one'],
+      ['hourglass', 'Hourglass', 'An hourglass with sand trickling down'],
+      ['clock', 'Clock with numbers', 'A clock with the time left in numbers and a blue ring'],
+    ],
+    trustHeading: 'Made for parents',
+    trust: [
+      "The app shows no ads and has no tracking, analytics or crash reporting tools. It needs no account and works without internet. Your children's names and settings stay on the device.",
+      'The plan: the core features without a purchase, everything else with a one-time in-app purchase handled by Google Play. There is no subscription.',
+      "BrushPaw helps with the daily brushing routine and doesn't replace advice from a dentist.",
+    ],
+    note: 'BrushPaw is still in development. Features and design may change before launch. The pictures show the state of November 2026.',
+  },
+}[lang];
+---
+<Base title={text.title} lang={lang} routeKey="app:putzpfote" description={text.description}>
+  <div class="theme-putzpfote">
+    <section class="hero">
+      <div class="container intro">
+        <div>
+          <span class="badge">{app.badge}</span>
+          <h1>{app.name}</h1>
+          <p class="lead">{app.tagline}</p>
+          <p class="text">{text.intro}</p>
+        </div>
+        <PinoBrushing lang={lang} />
+      </div>
+    </section>
+
+    <section class="container">
+      <h2>{text.featuresHeading}</h2>
+      <div class="grid">
+        {text.features.map(([heading, body]) => <div><h3>{heading}</h3><p>{body}</p></div>)}
+      </div>
+    </section>
+
+    <section class="container">
+      <h2>{text.displaysHeading}</h2>
+      <ul class="displays">
+        {text.displays.map(([key, caption, alt]) => (
+          <li>
+            <picture>
+              <source media="(prefers-color-scheme: dark)" srcset={url(`/images/screens/putzpfote-${key}-dark.webp`)} />
+              <img src={url(`/images/screens/putzpfote-${key}.webp`)} alt={alt} width="480" height="480" loading="lazy" />
+            </picture>
+            <span>{caption}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="container">
+      <div class="prose">
+        <h2>{text.trustHeading}</h2>
+        {text.trust.map((p) => <p>{p}</p>)}
+        <p class="note">{text.note}</p>
+      </div>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .hero { padding: 32px 0 24px; }
+  .intro { display: flex; gap: 28px 40px; align-items: center; flex-wrap: wrap; justify-content: center; }
+  .intro > div { flex: 1 1 320px; }
+  h1 { margin: 12px 0 0.15em; }
+  .lead { font-size: 1.25rem; font-weight: 600; color: var(--muted); margin: 0 0 12px; }
+  .text { margin: 0; max-width: 560px; }
+  .badge {
+    display: inline-block;
+    font-size: 0.85rem; font-weight: 600; line-height: 1.4;
+    padding: 0.2em 0.8em; border-radius: 999px;
+    background: var(--pp-badge-bg); color: var(--pp-badge-text);
+  }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px 28px; }
+  .grid h3 { margin: 0.8em 0 0.3em; }
+  .grid p { margin: 0; color: var(--muted); }
+  .displays {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 20px;
+    margin: 0; padding: 0; list-style: none;
+  }
+  .displays li { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; font-weight: 600; }
+  .displays img { width: 100%; max-width: 200px; border-radius: 50%; }
+  @media (min-width: 720px) {
+    .hero { padding: 56px 0 24px; }
+    .intro { flex-wrap: nowrap; }
+  }
+</style>

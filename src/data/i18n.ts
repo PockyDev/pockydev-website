@@ -11,6 +11,7 @@ export const routes = {
   privacy: { de: '/privacy/', en: '/en/privacy/' },
   'app:kfz-kennzeichen-finder': { de: '/apps/kfz-kennzeichen-finder/', en: '/en/apps/kfz-kennzeichen-finder/' },
   'app:phonea': { de: '/apps/phonea/', en: '/en/apps/phonea/' },
+  'app:putzpfote': { de: '/apps/putzpfote/', en: '/en/apps/putzpfote/' },
   'privacy:kfz-kennzeichen-finder': { de: '/apps/kfz-kennzeichen-finder/privacy/', en: '/en/apps/kfz-kennzeichen-finder/privacy/' },
   'privacy:phonea': { de: '/apps/phonea/privacy/', en: '/en/apps/phonea/privacy/' },
 } as const;
