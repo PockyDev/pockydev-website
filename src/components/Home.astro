@@ -2,7 +2,7 @@
 import { url } from '../data/url';
 import Base from '../layouts/Base.astro';
 import AppCard from './AppCard.astro';
-import MysteryCard from './MysteryCard.astro';
+import ComingSoonCard from './ComingSoonCard.astro';
 import { getApps } from '../data/apps';
 import type { Lang } from '../data/i18n';
 interface Props { lang: Lang }
@@ -53,7 +53,7 @@ const text = {
     <div class="grid">
       {getApps(lang).map((app) => <AppCard app={app} lang={lang} />)}
     </div>
-    <MysteryCard lang={lang} />
+    <ComingSoonCard lang={lang} />
   </section>
 
   <section class="container values">

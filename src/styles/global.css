@@ -81,5 +81,19 @@ h3 { font-size: 1.15rem; margin: 1.6em 0 0.4em; }
   padding: 0.75em 1em; border-radius: 8px; font-size: 0.95rem;
 }
 
+/* App cards on the home page (AppCard, ComingSoonCard) */
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 24px; display: flex; flex-direction: column; gap: 14px;
+}
+.card p { margin: 0; }
+.card-head { display: flex; gap: 16px; align-items: center; }
+.card-head img, .card-head svg { border-radius: 16px; flex: none; }
+.card h3 { margin: 0; }
+.card h3 a { color: var(--text); text-decoration: none; }
+.card h3 a:hover { color: var(--accent); }
+.card .tagline { margin: 2px 0 0; color: var(--muted); }
+.card-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; padding-top: 6px; }
+
 .skip { position: absolute; left: -9999px; }
 .skip:focus { left: 16px; top: 16px; z-index: 10; background: var(--surface); padding: 8px 12px; }

@@ -1,0 +1,153 @@
+---
+// Pino brushing his teeth on a round stage, animated with the numbers of the app's Compose Pino
+// (PockyDev/ToothbrushTimer pino/ui/model: PinoTimelines, PinoAnimator, BRUSH_SPOTS).
+// The markup alone is the finished still pose, so without JavaScript or with reduced motion
+// nothing moves. The script only sets transforms, stores nothing and loads nothing.
+import { pinoBrushingSvg } from '../data/pino';
+import type { Lang } from '../data/i18n';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const text = {
+  de: { label: 'Pino, der Corgi, putzt sich die Zähne', pause: 'Animation anhalten', play: 'Animation abspielen' },
+  en: { label: 'Pino the corgi brushing his teeth', pause: 'Pause animation', play: 'Play animation' },
+}[lang];
+---
+<div class="pp-stage" data-pino-stage data-label-pause={text.pause} data-label-play={text.play}>
+  <svg class="pp-pino" viewBox="-30 -40 260 290" role="img" aria-label={text.label}>
+    <Fragment set:html={pinoBrushingSvg('pp-head-clip')} />
+  </svg>
+  <button class="pp-toggle" type="button" data-state="playing" aria-label={text.pause} hidden>
+    <svg class="pp-icon-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6.5" y="5" width="4" height="14" rx="1.2" /><rect x="13.5" y="5" width="4" height="14" rx="1.2" /></svg>
+    <svg class="pp-icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.6v12.8c0 .8.9 1.3 1.6.9l10-6.4c.6-.4.6-1.3 0-1.7l-10-6.4C8.9 4.3 8 4.8 8 5.6z" /></svg>
+  </button>
+</div>
+
+<style>
+  .pp-stage {
+    position: relative; flex: none;
+    width: 220px; aspect-ratio: 1; border-radius: 50%;
+    background: var(--pp-stage);
+    display: flex; align-items: flex-end; justify-content: center;
+  }
+  .pp-pino { width: 91%; height: auto; margin-bottom: 4%; overflow: visible; }
+  .pp-pino :global(.pp-shadow) { fill: var(--pp-shadow); }
+  .pp-toggle {
+    position: absolute; right: 2%; bottom: 2%;
+    width: 44px; height: 44px; border-radius: 50%; padding: 0;
+    display: grid; place-items: center;
+    background: var(--surface); color: var(--text);
+    border: 1.5px solid var(--border); cursor: pointer;
+    transition: transform 0.12s ease;
+  }
+  .pp-toggle[hidden] { display: none; }
+  .pp-toggle:active { transform: scale(0.97); }
+  .pp-toggle:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .pp-toggle svg { width: 22px; height: 22px; fill: currentColor; }
+  .pp-toggle[data-state='playing'] .pp-icon-play,
+  .pp-toggle[data-state='paused'] .pp-icon-pause { display: none; }
+  @media (hover: hover) and (pointer: fine) {
+    .pp-toggle:hover { border-color: var(--accent); }
+  }
+  @media (min-width: 720px) {
+    .pp-stage { width: 320px; }
+  }
+</style>
+
+<script>
+  // Spot positions of the brush (app: BRUSH_SPOTS, a new spot every 5 s in the order 0 → 1 → 2).
+  // The arm keeps length 24 at every spot; the app's 25 at the third spot isn't visible here.
+  const SPOTS = [{ armR: -162, grip: 169 }, { armR: -178, grip: 183 }, { armR: -147, grip: 156 }];
+  const SPOT_TIME = 5;
+  const MAX_STEP = 1 / 30;
+
+  type Spring = { x: number; v: number; to: number };
+  const step = (s: Spring, dt: number, stiffness: number, ratio: number) => {
+    const damping = 2 * Math.sqrt(stiffness) * ratio;
+    s.v += (-stiffness * (s.x - s.to) - damping * s.v) * dt;
+    s.x += s.v * dt;
+  };
+
+  for (const stage of document.querySelectorAll<HTMLElement>('[data-pino-stage]')) {
+    const svg = stage.querySelector('svg')!;
+    const all = (name: string) => [...svg.querySelectorAll<SVGElement>(`[data-pp="${name}"]`)];
+    const body = all('body'), heads = all('head'), arms = all('arm'), scrubs = all('scrub');
+    const tails = all('tail'), brushes = all('brush'), collars = all('collar');
+    const eyesOpen = all('eyes-open'), eyesBlink = all('eyes-blink');
+    const button = stage.querySelector<HTMLButtonElement>('.pp-toggle')!;
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+
+    const arm: Spring = { x: SPOTS[0].armR, v: 0, to: SPOTS[0].armR };
+    const grip: Spring = { x: SPOTS[0].grip, v: 0, to: SPOTS[0].grip };
+    const scrubIn: Spring = { x: 0, v: 0, to: 1 };
+    let time = 0, last = 0, frame = 0, spot = 0, nextSpot = SPOT_TIME;
+    let nextBlink = 2, blinkUntil = 0, nextWag = 1.5, wagUntil = 0;
+    // Wanted by the viewer (button, reduced motion) and possible (on screen, tab visible)
+    let wanted = !reduce.matches, onScreen = false;
+
+    const set = (els: SVGElement[], transform: string) => { for (const el of els) el.setAttribute('transform', transform); };
+
+    const draw = (now: number) => {
+      const dt = Math.max(0, Math.min(MAX_STEP, (now - last) / 1000));
+      last = now;
+      time += dt;
+      if (time > nextSpot) {
+        spot = (spot + 1) % SPOTS.length;
+        nextSpot = time + SPOT_TIME;
+        arm.to = SPOTS[spot].armR;
+        grip.to = SPOTS[spot].grip;
+      }
+      step(arm, dt, 190, 0.62);
+      step(grip, dt, 190, 0.62);
+      step(scrubIn, dt, 120, 1);
+
+      // As in the app, bob and sway fade in with the scrubbing
+      const bob = Math.sin(time * 4 * Math.PI) * scrubIn.x;
+      const breath = Math.sin((time * 2 * Math.PI) / 3.4);
+      const headDy = 1.6 * bob + 0.9 * breath;
+      const squash = 0.012 * bob + 0.007 * breath;
+      const tilt = 4 * Math.sin((time * 2 * Math.PI) / 2.4) * scrubIn.x;
+      const scrubX = 3 * Math.cos(time * 4 * Math.PI) * scrubIn.x;
+      const scrubY = 2.6 * Math.sin(time * 4 * Math.PI) * scrubIn.x;
+
+      if (time > nextWag) { wagUntil = time + 1.3; nextWag = time + 3.5 + Math.random() * 4; }
+      const rest = wagUntil - time;
+      const wag = rest > 0 ? Math.sin(rest * Math.PI * 5) * 11 * Math.sin((Math.PI * rest) / 1.3) : 0;
+      if (time > nextBlink) { blinkUntil = time + 0.14; nextBlink = time + 3 + Math.random() * 3; }
+      const blink = time < blinkUntil;
+
+      set(body, `translate(100 228) scale(${1 + squash * 0.7} ${1 - squash}) translate(-100 -228)`);
+      set(heads, `translate(0 ${headDy}) rotate(${tilt} 100 136)`);
+      set(collars, `translate(0 ${headDy * 0.5})`);
+      set(scrubs, `translate(${scrubX} ${scrubY})`);
+      set(arms, `rotate(${arm.x} 132 150)`);
+      set(brushes, `rotate(${arm.x} 132 150) translate(132 171) rotate(${grip.x})`);
+      set(tails, `rotate(${4 + wag} 142 188)`);
+      for (const el of eyesOpen) el.setAttribute('visibility', blink ? 'hidden' : 'visible');
+      for (const el of eyesBlink) el.setAttribute('visibility', blink ? 'visible' : 'hidden');
+      frame = requestAnimationFrame(draw);
+    };
+
+    const update = () => {
+      const run = wanted && onScreen && !document.hidden;
+      if (run && !frame) {
+        last = performance.now();
+        frame = requestAnimationFrame(draw);
+      } else if (!run && frame) {
+        cancelAnimationFrame(frame);
+        frame = 0;
+      }
+      button.dataset.state = wanted ? 'playing' : 'paused';
+      button.setAttribute('aria-label', wanted ? stage.dataset.labelPause! : stage.dataset.labelPlay!);
+    };
+
+    button.hidden = false;
+    button.addEventListener('click', () => { wanted = !wanted; update(); });
+    reduce.addEventListener('change', () => { wanted = !reduce.matches; update(); });
+    document.addEventListener('visibilitychange', update);
+    new IntersectionObserver((entries) => {
+      onScreen = entries.some((e) => e.isIntersecting);
+      update();
+    }).observe(stage);
+    update();
+  }
+</script>

@@ -1,0 +1,52 @@
+---
+// Home page tile of an app that isn't on Google Play yet: Pino's head instead of the app icon,
+// a "coming soon" badge and only a link to the landing page (no store button, no chips).
+// Sits in its own row below the apps grid, so the real app cards keep their width.
+import { getTeaser } from '../data/teasers';
+import { pinoHeadSvg } from '../data/pino';
+import { type Lang, route, ui } from '../data/i18n';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const app = getTeaser('putzpfote', lang);
+const page = route('app:putzpfote', lang);
+---
+<article class="card soon">
+  <div class="card-head">
+    <svg class="icon" viewBox="22 -4 156 156" width="72" height="72" aria-hidden="true" focusable="false">
+      <Fragment set:html={pinoHeadSvg('pp-tile-clip')} />
+    </svg>
+    <div>
+      <h3><a href={page}>{app.name}</a></h3>
+      <p class="tagline">{app.tagline}</p>
+    </div>
+  </div>
+  <div class="body">
+    <span class="badge">{app.badge}</span>
+    <p>{app.teaser}</p>
+    <div class="card-actions">
+      <a class="btn secondary" href={page}>{ui[lang].learnMore}</a>
+    </div>
+  </div>
+</article>
+
+<style>
+  /* Putzpfote's corgi orange on top, as the real apps show their accent colour */
+  .soon { margin-top: 20px; border-top: 4px solid #e8a54b; }
+  .icon { background: #fbe7cf; padding: 6px; }
+  .body { display: flex; flex-direction: column; gap: 12px; }
+  .badge {
+    align-self: flex-start;
+    font-size: 0.85rem; font-weight: 600; line-height: 1.4;
+    padding: 0.2em 0.8em; border-radius: 999px;
+    background: #fbe0b8; color: #5a3a0a;
+  }
+  .body .card-actions { margin-top: 0; padding-top: 0; }
+  @media (prefers-color-scheme: dark) {
+    .badge { background: #4d3a1e; color: #ffddb0; }
+  }
+  @media (min-width: 720px) {
+    .soon { flex-direction: row; align-items: center; gap: 28px; }
+    .soon .card-head { flex: 0 0 260px; }
+    .body { flex: 1; }
+  }
+</style>
