@@ -42,8 +42,6 @@
 }
 
 .theme-putzpfote :is(h1, h2, h3) { color: var(--heading); }
-.theme-putzpfote .btn:hover { box-shadow: 0 6px 18px rgb(36 87 214 / 0.25); }
-.theme-putzpfote .chips li { background: color-mix(in srgb, #e8a54b 18%, transparent); }
 .theme-putzpfote .note {
   border-left-color: #e8a54b;
   background: color-mix(in srgb, #e8a54b 12%, var(--surface));

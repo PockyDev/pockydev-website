@@ -66,7 +66,8 @@ const mouths: Record<Mouth, string> = {
   grin:
     `<path d="M100 109 V113" stroke="${C.ink}" stroke-width="3" stroke-linecap="round"/>` +
     `<path d="${GRIN}" fill="${C.mouth}"/><path d="${GRIN_TEETH}" fill="${C.white}"/>` +
-    // Foam at the mouth corner, as in the app after the first seconds of brushing
+    // Foam at the mouth corner, as in the app after the first seconds of brushing; always shown
+    // here, because the still pose (no JavaScript, reduced motion) is a moment mid-brushing
     `<circle cx="86" cy="123" r="3.2" fill="${C.white}" stroke="${C.creamShade}"/><circle cx="82" cy="117.5" r="2.2" fill="${C.white}" stroke="${C.creamShade}"/>`,
 };
 

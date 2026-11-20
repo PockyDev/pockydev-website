@@ -32,5 +32,4 @@ const teasersByLang: Record<Lang, Teaser[]> = {
   ],
 };
 
-export const getTeasers = (lang: Lang) => teasersByLang[lang];
 export const getTeaser = (slug: Teaser['slug'], lang: Lang) => teasersByLang[lang].find((t) => t.slug === slug)!;
