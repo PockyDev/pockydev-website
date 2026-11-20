@@ -1,0 +1,68 @@
+---
+// Interim teaser for the next app (Putzpfote) until its domains and name are secured:
+// no app name, no mascot name, no link, no features. A corgi peeks over the bottom edge,
+// with a few foam bubbles as the only hint. Replaced by the real tile on announcement.
+import { pinoHeadSvg } from '../data/pino';
+import type { Lang } from '../data/i18n';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const text = {
+  de: {
+    label: 'In Arbeit',
+    heading: 'Da schnüffelt schon wer herum',
+    body: 'Ein Corgi bekommt bald einen neuen Job: Er begleitet Familien mit kleinen Kindern durch ein tägliches Ritual. Mehr verrate ich noch nicht.',
+  },
+  en: {
+    label: 'In the works',
+    heading: "Look who's peeking",
+    body: "A corgi is about to get a new job: helping families with little kids through a daily routine. That's all I'm saying for now.",
+  },
+}[lang];
+---
+<article class="mystery">
+  <div class="copy">
+    <span class="label">{text.label}</span>
+    <h3>{text.heading}</h3>
+    <p>{text.body}</p>
+  </div>
+  <div class="peek" aria-hidden="true">
+    <svg class="bubbles" viewBox="0 0 60 60" focusable="false">
+      <circle cx="14" cy="40" r="7" /><circle cx="34" cy="22" r="4.5" /><circle cx="48" cy="44" r="3" />
+    </svg>
+    <svg class="corgi" viewBox="22 -4 156 156" focusable="false">
+      <Fragment set:html={pinoHeadSvg('pp-mystery-clip')} />
+    </svg>
+  </div>
+</article>
+
+<style>
+  .mystery {
+    position: relative; overflow: hidden;
+    margin-top: 20px; padding: 24px 24px 0;
+    display: flex; flex-wrap: wrap; align-items: flex-end; gap: 0 24px;
+    background: var(--surface); border: 1.5px dashed var(--border); border-radius: var(--radius);
+  }
+  .copy { flex: 1 1 300px; padding-bottom: 24px; }
+  .label {
+    display: inline-block;
+    font-size: 0.85rem; font-weight: 600; line-height: 1.4;
+    padding: 0.2em 0.8em; border-radius: 999px;
+    background: color-mix(in srgb, var(--corgi) 22%, transparent); color: var(--text);
+  }
+  h3 { margin: 10px 0 6px; }
+  p { margin: 0; color: var(--muted); max-width: 560px; }
+  /* Only the ears and eyes show: the head sits half below the card's edge */
+  .peek { position: relative; flex: 0 0 auto; width: 150px; height: 112px; margin: 0 auto; }
+  .corgi { position: absolute; left: 0; top: 0; width: 150px; height: 150px; }
+  .bubbles { position: absolute; right: -34px; top: -6px; width: 44px; height: 44px; }
+  .bubbles circle { fill: #ffffff; stroke: #c98532; stroke-width: 1.5; }
+  @media (prefers-reduced-motion: no-preference) {
+    .corgi { transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    @media (hover: hover) and (pointer: fine) {
+      .mystery:hover .corgi { transform: translateY(-8px); }
+    }
+  }
+  @media (min-width: 720px) {
+    .peek { margin: 0 24px 0 0; }
+  }
+</style>
