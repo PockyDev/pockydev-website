@@ -8,7 +8,7 @@ import PinoBrushing from './PinoBrushing.astro';
 import '../styles/putzpfote.css';
 import { url } from '../data/url';
 import { getTeaser } from '../data/teasers';
-import type { Lang } from '../data/i18n';
+import { type Lang, route, ui } from '../data/i18n';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const app = getTeaser('putzpfote', lang);
@@ -109,6 +109,7 @@ const text = {
       <div class="prose">
         <h2>{text.trustHeading}</h2>
         {text.trust.map((p) => <p>{p}</p>)}
+        <p>{ui[lang].appPrivacyText(app.name)} <a href={route('privacy:putzpfote', lang)}>{ui[lang].appPrivacyLink}</a>.</p>
         <p class="note">{text.note}</p>
       </div>
     </section>
