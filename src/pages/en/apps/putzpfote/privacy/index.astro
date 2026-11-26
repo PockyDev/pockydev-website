@@ -1,0 +1,15 @@
+---
+// Rendered from the same Markdown master as the app's in-app text (one source, see CLAUDE.md).
+import Base from '../../../../../layouts/Base.astro';
+import { Content } from '../../../../../content/legal/putzpfote/privacy.en.md';
+---
+<Base title="Privacy policy BrushPaw" routeKey="privacy:putzpfote" description="Privacy policy of the app BrushPaw" lang="en">
+  <section class="container prose page legal">
+    <Content />
+  </section>
+</Base>
+
+<style>
+  .page { padding-top: 56px; }
+  .legal :global(h1 + p) { color: var(--muted); font-size: 0.9rem; }
+</style>
