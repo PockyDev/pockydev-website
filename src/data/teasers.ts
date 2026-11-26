@@ -1,8 +1,8 @@
 import type { Lang } from './i18n';
 
 // Apps that are announced but not on Google Play yet. They get a tile on the home page and a
-// landing page, but no store link, no structured data and no privacy policy of their own.
-// On release the app moves to apps.ts (with its privacy pages), and its teaser goes away.
+// landing page, but no store link and no structured data. Their privacy pages may go online during
+// the teaser phase. On release the app moves to apps.ts, and its teaser goes away.
 export interface Teaser {
   slug: 'putzpfote';
   name: string;
